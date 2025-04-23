@@ -274,18 +274,15 @@ namespace ProjectPABD_Forms
                 try
                 {
                     conn.Open();
-                    string query = "SELECT IdKomunitas AS [ID], NamaKomunitas, AdminKomunitas, Deskripsi, NomorTeleponKomunitas," +
-                        "Kategori, AlamatKomunitas, EmailKomunitas, JumlahAnggota";
+                    // Add the FROM clause to specify your table name (replace "TableKomunitas" with your actual table name)
+                    string query = "SELECT IdKomunitas AS [ID], NamaKomunitas, AdminKomunitas, Deskripsi, NomorTeleponKomunitas, Kategori, AlamatKomunitas, EmailKomunitas, JumlahAnggota FROM Komunitas";
                     SqlDataAdapter da = new SqlDataAdapter(query, conn);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
-
                     dgwKomun.AutoGenerateColumns = true;
                     dgwKomun.DataSource = dt;
-
                     ClearForm();
                 }
-
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error: " + ex.Message, "Kesalahan", MessageBoxButtons.OK, MessageBoxIcon.Error);
