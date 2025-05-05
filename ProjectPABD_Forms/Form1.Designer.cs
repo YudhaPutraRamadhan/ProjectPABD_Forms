@@ -52,14 +52,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dgwKomun = new System.Windows.Forms.DataGridView();
-            this.komunitasBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.management_KomunitasDataSet = new ProjectPABD_Forms.Management_KomunitasDataSet();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.komunitasTableAdapter = new ProjectPABD_Forms.Management_KomunitasDataSetTableAdapters.KomunitasTableAdapter();
-            this.btnRefresh = new System.Windows.Forms.Button();
-            this.btnHapus = new System.Windows.Forms.Button();
-            this.btnUbah = new System.Windows.Forms.Button();
-            this.btnSimpan = new System.Windows.Forms.Button();
             this.idKomunitasDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.namaKomunitasDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.adminKomunitasDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -69,6 +61,14 @@
             this.alamatKomunitasDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.emailKomunitasDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.jumlahAnggotaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.komunitasBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.management_KomunitasDataSet = new ProjectPABD_Forms.Management_KomunitasDataSet();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.btnSimpan = new System.Windows.Forms.Button();
+            this.btnUbah = new System.Windows.Forms.Button();
+            this.btnHapus = new System.Windows.Forms.Button();
+            this.btnRefresh = new System.Windows.Forms.Button();
+            this.komunitasTableAdapter = new ProjectPABD_Forms.Management_KomunitasDataSetTableAdapters.KomunitasTableAdapter();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgwKomun)).BeginInit();
@@ -122,6 +122,7 @@
             this.textJumlah.Size = new System.Drawing.Size(453, 23);
             this.textJumlah.TabIndex = 18;
             this.textJumlah.TextChanged += new System.EventHandler(this.textJumlah_TextChanged);
+            this.textJumlah.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textJumlah_KeyPress);
             // 
             // textEmail
             // 
@@ -131,6 +132,8 @@
             this.textEmail.Size = new System.Drawing.Size(453, 23);
             this.textEmail.TabIndex = 17;
             this.textEmail.TextChanged += new System.EventHandler(this.textEmail_TextChanged);
+            this.textEmail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textEmail_KeyPress);
+            this.textEmail.Leave += new System.EventHandler(this.textEmail_Leave);
             // 
             // textAlamat
             // 
@@ -140,6 +143,7 @@
             this.textAlamat.Size = new System.Drawing.Size(453, 23);
             this.textAlamat.TabIndex = 16;
             this.textAlamat.TextChanged += new System.EventHandler(this.textAlamat_TextChanged);
+            this.textAlamat.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textAlamat_KeyPress);
             // 
             // textKategori
             // 
@@ -149,6 +153,7 @@
             this.textKategori.Size = new System.Drawing.Size(453, 23);
             this.textKategori.TabIndex = 15;
             this.textKategori.TextChanged += new System.EventHandler(this.textKategori_TextChanged);
+            this.textKategori.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textKategori_KeyPress);
             // 
             // textTelepon
             // 
@@ -158,6 +163,7 @@
             this.textTelepon.Size = new System.Drawing.Size(453, 23);
             this.textTelepon.TabIndex = 14;
             this.textTelepon.TextChanged += new System.EventHandler(this.textTelepon_TextChanged);
+            this.textTelepon.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textTelepon_KeyPress);
             // 
             // textDeskripsi
             // 
@@ -167,6 +173,7 @@
             this.textDeskripsi.Size = new System.Drawing.Size(453, 23);
             this.textDeskripsi.TabIndex = 13;
             this.textDeskripsi.TextChanged += new System.EventHandler(this.textDeskripsi_TextChanged);
+            this.textDeskripsi.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textDeskripsi_KeyPress);
             // 
             // textAdmin
             // 
@@ -176,6 +183,7 @@
             this.textAdmin.Size = new System.Drawing.Size(453, 23);
             this.textAdmin.TabIndex = 12;
             this.textAdmin.TextChanged += new System.EventHandler(this.textAdmin_TextChanged);
+            this.textAdmin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textAdmin_KeyPress);
             // 
             // textNama
             // 
@@ -327,84 +335,6 @@
             this.dgwKomun.TabIndex = 0;
             this.dgwKomun.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgwKomun_CellContentClick);
             // 
-            // komunitasBindingSource
-            // 
-            this.komunitasBindingSource.DataMember = "Komunitas";
-            this.komunitasBindingSource.DataSource = this.management_KomunitasDataSet;
-            // 
-            // management_KomunitasDataSet
-            // 
-            this.management_KomunitasDataSet.DataSetName = "Management_KomunitasDataSet";
-            this.management_KomunitasDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.SystemColors.Window;
-            this.panel3.Controls.Add(this.btnSimpan);
-            this.panel3.Controls.Add(this.btnUbah);
-            this.panel3.Controls.Add(this.btnHapus);
-            this.panel3.Controls.Add(this.btnRefresh);
-            this.panel3.Location = new System.Drawing.Point(12, 599);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(656, 107);
-            this.panel3.TabIndex = 3;
-            // 
-            // komunitasTableAdapter
-            // 
-            this.komunitasTableAdapter.ClearBeforeFill = true;
-            // 
-            // btnRefresh
-            // 
-            this.btnRefresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnRefresh.ForeColor = System.Drawing.Color.White;
-            this.btnRefresh.Location = new System.Drawing.Point(520, 36);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(99, 38);
-            this.btnRefresh.TabIndex = 4;
-            this.btnRefresh.Text = "Refresh";
-            this.btnRefresh.UseVisualStyleBackColor = false;
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-            // 
-            // btnHapus
-            // 
-            this.btnHapus.BackColor = System.Drawing.Color.Red;
-            this.btnHapus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnHapus.ForeColor = System.Drawing.Color.White;
-            this.btnHapus.Location = new System.Drawing.Point(351, 36);
-            this.btnHapus.Name = "btnHapus";
-            this.btnHapus.Size = new System.Drawing.Size(99, 38);
-            this.btnHapus.TabIndex = 5;
-            this.btnHapus.Text = "Hapus";
-            this.btnHapus.UseVisualStyleBackColor = false;
-            this.btnHapus.Click += new System.EventHandler(this.btnHapus_Click);
-            // 
-            // btnUbah
-            // 
-            this.btnUbah.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.btnUbah.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnUbah.ForeColor = System.Drawing.Color.White;
-            this.btnUbah.Location = new System.Drawing.Point(186, 36);
-            this.btnUbah.Name = "btnUbah";
-            this.btnUbah.Size = new System.Drawing.Size(99, 38);
-            this.btnUbah.TabIndex = 6;
-            this.btnUbah.Text = "Ubah";
-            this.btnUbah.UseVisualStyleBackColor = false;
-            this.btnUbah.Click += new System.EventHandler(this.btnUbah_Click);
-            // 
-            // btnSimpan
-            // 
-            this.btnSimpan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btnSimpan.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnSimpan.ForeColor = System.Drawing.Color.White;
-            this.btnSimpan.Location = new System.Drawing.Point(28, 36);
-            this.btnSimpan.Name = "btnSimpan";
-            this.btnSimpan.Size = new System.Drawing.Size(99, 38);
-            this.btnSimpan.TabIndex = 7;
-            this.btnSimpan.Text = "Simpan";
-            this.btnSimpan.UseVisualStyleBackColor = false;
-            this.btnSimpan.Click += new System.EventHandler(this.btnSimpan_Click);
-            // 
             // idKomunitasDataGridViewTextBoxColumn
             // 
             this.idKomunitasDataGridViewTextBoxColumn.DataPropertyName = "IdKomunitas";
@@ -476,6 +406,84 @@
             this.jumlahAnggotaDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.jumlahAnggotaDataGridViewTextBoxColumn.Name = "jumlahAnggotaDataGridViewTextBoxColumn";
             this.jumlahAnggotaDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // komunitasBindingSource
+            // 
+            this.komunitasBindingSource.DataMember = "Komunitas";
+            this.komunitasBindingSource.DataSource = this.management_KomunitasDataSet;
+            // 
+            // management_KomunitasDataSet
+            // 
+            this.management_KomunitasDataSet.DataSetName = "Management_KomunitasDataSet";
+            this.management_KomunitasDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.SystemColors.Window;
+            this.panel3.Controls.Add(this.btnSimpan);
+            this.panel3.Controls.Add(this.btnUbah);
+            this.panel3.Controls.Add(this.btnHapus);
+            this.panel3.Controls.Add(this.btnRefresh);
+            this.panel3.Location = new System.Drawing.Point(12, 599);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(656, 107);
+            this.panel3.TabIndex = 3;
+            // 
+            // btnSimpan
+            // 
+            this.btnSimpan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnSimpan.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btnSimpan.ForeColor = System.Drawing.Color.White;
+            this.btnSimpan.Location = new System.Drawing.Point(28, 36);
+            this.btnSimpan.Name = "btnSimpan";
+            this.btnSimpan.Size = new System.Drawing.Size(99, 38);
+            this.btnSimpan.TabIndex = 7;
+            this.btnSimpan.Text = "Simpan";
+            this.btnSimpan.UseVisualStyleBackColor = false;
+            this.btnSimpan.Click += new System.EventHandler(this.btnSimpan_Click);
+            // 
+            // btnUbah
+            // 
+            this.btnUbah.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnUbah.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btnUbah.ForeColor = System.Drawing.Color.White;
+            this.btnUbah.Location = new System.Drawing.Point(186, 36);
+            this.btnUbah.Name = "btnUbah";
+            this.btnUbah.Size = new System.Drawing.Size(99, 38);
+            this.btnUbah.TabIndex = 6;
+            this.btnUbah.Text = "Ubah";
+            this.btnUbah.UseVisualStyleBackColor = false;
+            this.btnUbah.Click += new System.EventHandler(this.btnUbah_Click);
+            // 
+            // btnHapus
+            // 
+            this.btnHapus.BackColor = System.Drawing.Color.Red;
+            this.btnHapus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btnHapus.ForeColor = System.Drawing.Color.White;
+            this.btnHapus.Location = new System.Drawing.Point(351, 36);
+            this.btnHapus.Name = "btnHapus";
+            this.btnHapus.Size = new System.Drawing.Size(99, 38);
+            this.btnHapus.TabIndex = 5;
+            this.btnHapus.Text = "Hapus";
+            this.btnHapus.UseVisualStyleBackColor = false;
+            this.btnHapus.Click += new System.EventHandler(this.btnHapus_Click);
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btnRefresh.ForeColor = System.Drawing.Color.White;
+            this.btnRefresh.Location = new System.Drawing.Point(520, 36);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(99, 38);
+            this.btnRefresh.TabIndex = 4;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.UseVisualStyleBackColor = false;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
+            // komunitasTableAdapter
+            // 
+            this.komunitasTableAdapter.ClearBeforeFill = true;
             // 
             // Form1
             // 

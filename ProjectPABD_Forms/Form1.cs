@@ -289,6 +289,94 @@ namespace ProjectPABD_Forms
                 }
             }
         }
+
+        private void textAdmin_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true;
+
+                MessageBox.Show("Hanya huruf yang diperbolehkan untuk kolom ini!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void textDeskripsi_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+
+                e.Handled = true;
+
+                MessageBox.Show("Hanya huruf yang diperbolehkan untuk kolom ini!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void textTelepon_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+
+                MessageBox.Show("Kolom ini hanya boleh berisi angka!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void textKategori_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+
+                e.Handled = true;
+
+                MessageBox.Show("Hanya huruf yang diperbolehkan untuk kolom ini!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void textAlamat_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true;
+
+                MessageBox.Show("Simbol tidak diperbolehkan untuk kolom ini!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void textEmail_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            if (!char.IsLetterOrDigit(e.KeyChar) &&
+                e.KeyChar != '@' &&
+                e.KeyChar != '.' &&
+                !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+
+                MessageBox.Show("Simbol '" + e.KeyChar + "' tidak diperbolehkan dalam email.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void textEmail_Leave(object sender, EventArgs e)
+        {
+            string email = textEmail.Text.Trim();
+
+            // Jika email tidak kosong dan tidak mengandung '@'
+            if (!string.IsNullOrEmpty(email) && !email.Contains('@'))
+            {
+                MessageBox.Show("Format email salah", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textEmail.Focus(); // Kembalikan fokus ke field email
+            }
+        }
+
+        private void textJumlah_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+
+                MessageBox.Show("Kolom ini hanya boleh berisi angka!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
     }
 }
 
