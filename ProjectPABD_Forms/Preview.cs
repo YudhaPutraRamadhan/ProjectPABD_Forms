@@ -40,11 +40,11 @@ namespace ProjectPABD_Forms
 
         private bool ValidateRow(DataRow row)
         {
-            string id = row["IdKomunitas"].ToString().Trim();
+            string idKomunitas = row["IdKomunitas"].ToString().Trim();
 
-            if (string.IsNullOrWhiteSpace(id) || !Regex.IsMatch(id, @"^[a-zA-Z0-9]+$"))
+            if (string.IsNullOrWhiteSpace(idKomunitas) || !Regex.IsMatch(idKomunitas, @"^\d+$"))
             {
-                MessageBox.Show("ID Komunitas tidak boleh kosong dan hanya boleh berisi huruf dan angka", "Kesalahan Validasi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Id Komunitas tidak boleh kosong dan hanya boleh berisi angka", "Kesalahan Validasi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 

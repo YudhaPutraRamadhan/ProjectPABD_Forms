@@ -7,6 +7,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
+using System.Runtime.Caching;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +18,15 @@ namespace ProjectPABD_Forms
     public partial class CRUD_Komun: Form
     {
         // Connection string to connect to the database
-        private string connectionString = "Data Source=PAVILIONGAME\\YUDHA_PUTRA_RAMA;Initial Catalog=Management_Komunitas;Integrated Security=True";
+        private readonly string connectionString = "Data Source=PAVILIONGAME\\YUDHA_PUTRA_RAMA;Initial Catalog=Management_Komunitas;Integrated Security=True";
+
+        private readonly MemoryCache _cache = MemoryCache.Default;
+        private readonly CacheItemPolicy _policy = new CacheItemPolicy
+        {
+            AbsoluteExpiration = DateTimeOffset.Now.AddMinutes(5)
+        };
+        private const string CacheKey = "KomunitasData";
+
         public CRUD_Komun()
         {
             InitializeComponent();
@@ -25,7 +34,26 @@ namespace ProjectPABD_Forms
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            EnsureIndexes();
             LoadData();
+        }
+
+        private void EnsureIndexes()
+        {
+            using (var conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                var indexScript = @"
+                IF OBJECT_ID('dbo.Komunitas', 'U') IS NOT NULL
+                BEGIN
+                    IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE name='idx_Komunitas_NamaKomunitas_NomorTeleponKomunitas_AdminKomunitas')
+                    CREATE NONCLUSTERED INDEX idx_Komunitas_NamaKomunitas_NomorTeleponKomunitas_AdminKomunitas ON dbo.Komunitas(NamaKomunitas, NomorTeleponKomunitas, AdminKomunitas);
+                END";
+            using (var cmd = new SqlCommand(indexScript, conn))
+                {
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
         private void ClearForm()
@@ -39,31 +67,50 @@ namespace ProjectPABD_Forms
             textAlamat.Clear();
             textEmail.Clear();
             textJumlah.Clear();
+            dgwKomun.ClearSelection();
 
             textID.Focus();
         }
 
         private void LoadData()
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            DataTable dt;
+            if (_cache.Contains(CacheKey))
             {
-                try
+                dt = _cache.Get(CacheKey) as DataTable;
+            }
+            else
+            {
+                dt = new DataTable();
+                using (var conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    string query = "SELECT IdKomunitas AS [ID], NamaKomunitas, AdminKomunitas, Deskripsi, NomorTeleponKomunitas, Kategori, AlamatKomunitas, EmailKomunitas, JumlahAnggota FROM Komunitas";
-                    SqlDataAdapter da = new SqlDataAdapter(query, conn);
-                    DataTable dt = new DataTable();
+                    var query = "SELECT IdKomunitas AS [ID], NamaKomunitas, AdminKomunitas, Deskripsi, NomorTeleponKomunitas, Kategori, AlamatKomunitas, EmailKomunitas, JumlahAnggota FROM Komunitas";
+                    var da = new SqlDataAdapter(query, conn);
                     da.Fill(dt);
-
-                    dgwKomun.AutoGenerateColumns = true;
-                    dgwKomun.DataSource = dt;
-
-                    ClearForm();
                 }
+                _cache.Add(CacheKey, dt, _policy);
+            }
 
-                catch (Exception ex)
+            dgwKomun.AutoGenerateColumns = true;
+            dgwKomun.DataSource = dt;
+        }
+
+        private void AnalyzeQuery(string sqlQuery)
+        {
+            using (var conn = new SqlConnection(connectionString))
+            {
+                conn.InfoMessage += (s, e) => MessageBox.Show(e.Message, "STATISTICS INFO");
+                conn.Open();
+                var wrapped = $@"
+                    SET STATISTICS IO ON;
+                    SET STATISTICS TIME ON;
+                    {sqlQuery};
+                    SET STATISTICS IO OFF;
+                    SET STATISTICS TIME OFF;";
+                using (var cmd = new SqlCommand(wrapped, conn))
                 {
-                    MessageBox.Show("Error: " + ex.Message, "Kesalahan", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    cmd.ExecuteNonQuery();
                 }
             }
         }
@@ -113,36 +160,17 @@ namespace ProjectPABD_Forms
 
         }
 
-        private void dgwKomun_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow row = dgwKomun.Rows[e.RowIndex];
-                textID.Text = row.Cells[0].Value.ToString();
-                textNama.Text = row.Cells[1].Value.ToString();
-                textAdmin.Text = row.Cells[2].Value.ToString();
-                textDeskripsi.Text = row.Cells[3].Value.ToString();
-                textTelepon.Text = row.Cells[4].Value.ToString();
-                textKategori.Text = row.Cells[5].Value.ToString();
-                textAlamat.Text = row.Cells[6].Value.ToString();
-                textEmail.Text = row.Cells[7].Value.ToString();
-                textJumlah.Text = row.Cells[8].Value.ToString();
-            }
-        }
-
         private void btnSimpan_Click(object sender, EventArgs e)
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            if (string.IsNullOrWhiteSpace(textID.Text) || string.IsNullOrWhiteSpace(textNama.Text))
             {
-                try
+                MessageBox.Show("Harap isi semua data!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            try
+            {
+                using (var conn = new SqlConnection(connectionString))
                 {
-                    if (textID.Text == "" || textNama.Text == "" || textAdmin.Text == "" || textDeskripsi.Text == "" ||
-                        textTelepon.Text == "" || textKategori.Text == "" || textAlamat.Text == "" || textEmail.Text == "" ||
-                        textJumlah.Text == "")
-                    {
-                        MessageBox.Show("Harap isi semua data!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
                     conn.Open();
                     using (SqlCommand cmd = new SqlCommand("AddKomunitas", conn))
                     {
@@ -157,139 +185,91 @@ namespace ProjectPABD_Forms
                         cmd.Parameters.AddWithValue("@AlamatKomunitas", textAlamat.Text);
                         cmd.Parameters.AddWithValue("@EmailKomunitas", textEmail.Text);
                         cmd.Parameters.AddWithValue("@JumlahAnggota", textJumlah.Text);
-
-                        int rowsAffected = cmd.ExecuteNonQuery();
-                        if (rowsAffected > 0)
-                        {
-                            MessageBox.Show("Data berhasil disimpan!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            LoadData();
-                            ClearForm();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Gagal menyimpan data!", "Kesalahan", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
+                        cmd.ExecuteNonQuery();
                     }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error: " + ex.Message, "Kesalahan", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                _cache.Remove(CacheKey);
+                MessageBox.Show("Data berhasil ditambahkan!", "Sukses");
+                LoadData();
+                ClearForm();
+            }
+            catch (Exception ex)
+            {
+               MessageBox.Show("Error: " + ex.Message, "Kesalahan", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void btnUbah_Click(object sender, EventArgs e)
         {
-            if (dgwKomun.SelectedRows.Count > 0)
+            if (dgwKomun.SelectedRows.Count == 0)
             {
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                MessageBox.Show("Pilih data yang akan diubah!", "Peringatan");
+                return;
+            }
+            try
+            {
+                using (var conn = new SqlConnection(connectionString))
                 {
-                    try
+                    conn.Open();
+                    using (var cmd = new SqlCommand("UpdateKomunitas", conn))
                     {
-                        conn.Open();
-                        using (SqlCommand cmd = new SqlCommand("UpdateKomunitas", conn))
-                        {
-                            cmd.CommandType = CommandType.StoredProcedure;
-
-                            cmd.Parameters.AddWithValue("@IdKomunitas", textID.Text);
-                            cmd.Parameters.AddWithValue("@NamaKomunitas", textNama.Text.Trim());
-                            cmd.Parameters.AddWithValue("@AdminKomunitas", textAdmin.Text.Trim());
-                            cmd.Parameters.AddWithValue("@Deskripsi", textDeskripsi.Text.Trim());
-                            cmd.Parameters.AddWithValue("@NomorTeleponKomunitas", textTelepon.Text.Trim());
-                            cmd.Parameters.AddWithValue("@Kategori", textKategori.Text.Trim());
-                            cmd.Parameters.AddWithValue("@AlamatKomunitas", textAlamat.Text.Trim());
-                            cmd.Parameters.AddWithValue("@EmailKomunitas", textEmail.Text.Trim());
-                            cmd.Parameters.AddWithValue("@JumlahAnggota", textJumlah.Text.Trim());
-                            int rowsAffected = cmd.ExecuteNonQuery();
-                            if (rowsAffected > 0)
-                            {
-                                MessageBox.Show("Data berhasil diubah!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                LoadData();
-                                ClearForm();
-                            }
-                            else
-                            {
-                                MessageBox.Show("Gagal mengubah data!", "Kesalahan", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error: " + ex.Message, "Kesalahan", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@IdKomunitas", textID.Text);
+                        cmd.Parameters.AddWithValue("@NamaKomunitas", textNama.Text.Trim());
+                        cmd.Parameters.AddWithValue("@AdminKomunitas", textAdmin.Text.Trim());
+                        cmd.Parameters.AddWithValue("@Deskripsi", textDeskripsi.Text.Trim());
+                        cmd.Parameters.AddWithValue("@NomorTeleponKomunitas", textTelepon.Text.Trim());
+                        cmd.Parameters.AddWithValue("@Kategori", textKategori.Text.Trim());
+                        cmd.Parameters.AddWithValue("@AlamatKomunitas", textAlamat.Text.Trim());
+                        cmd.Parameters.AddWithValue("@EmailKomunitas", textEmail.Text.Trim());
+                        cmd.Parameters.AddWithValue("@JumlahAnggota", textJumlah.Text.Trim());
+                        int rowsAffected = cmd.ExecuteNonQuery();
                     }
                 }
+                _cache.Remove(CacheKey);
+                MessageBox.Show("Data berhasil diperbarui!", "Sukses");
+                LoadData();
+                ClearForm();
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Pilih data yang akan diubah!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Error: " + ex.Message, "Kesalahan");
             }
         }
 
         private void btnHapus_Click(object sender, EventArgs e)
         {
-            if (dgwKomun.SelectedRows.Count > 0)
+            if (dgwKomun.SelectedRows.Count == 0) return;
+            if (MessageBox.Show("Apakah Anda yakin ingin menghapus data ini?", "Konfirmasi", MessageBoxButtons.YesNo) != DialogResult.Yes)
+                return;
+            try
             {
-                DialogResult confirm = MessageBox.Show("Apakah Anda yakin ingin menghapus data ini?", "Konfirmasi", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (confirm == DialogResult.Yes)
+                var idKomunitas = dgwKomun.SelectedRows[0].Cells[0].Value.ToString();
+                using (var conn = new SqlConnection(connectionString))
                 {
-                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    conn.Open();
+                    using (var cmd = new SqlCommand("DeleteKomunitas", conn))
                     {
-                        try
-                        {
-                            string idKomunitas = dgwKomun.SelectedRows[0].Cells["IdKomunitas"].Value.ToString();
-                            conn.Open();
-                            using (SqlCommand cmd = new SqlCommand("DeleteKomunitas", conn))
-                            {
-                                cmd.CommandType = CommandType.StoredProcedure;
-                                cmd.Parameters.AddWithValue("@IdKomunitas", idKomunitas);
-                                
-                                int rowsAffected = cmd.ExecuteNonQuery();
-                                if (rowsAffected > 0)
-                                {
-                                    MessageBox.Show("Data berhasil dihapus!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                    LoadData();
-                                    ClearForm();
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Gagal menghapus data!", "Kesalahan", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                }
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Error: " + ex.Message, "Kesalahan", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@IdKomunitas", idKomunitas);
+                        cmd.ExecuteNonQuery();
                     }
                 }
+                _cache.Remove(CacheKey);
+                MessageBox.Show("Data berhasil dihapus!", "Sukses");
+                LoadData();
+                ClearForm();
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Pilih data yang akan dihapus!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Error: " + ex.Message, "Kesalahan");
             }
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    conn.Open();
-                    // Add the FROM clause to specify your table name (replace "TableKomunitas" with your actual table name)
-                    string query = "SELECT IdKomunitas AS [ID], NamaKomunitas, AdminKomunitas, Deskripsi, NomorTeleponKomunitas, Kategori, AlamatKomunitas, EmailKomunitas, JumlahAnggota FROM Komunitas";
-                    SqlDataAdapter da = new SqlDataAdapter(query, conn);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-                    dgwKomun.AutoGenerateColumns = true;
-                    dgwKomun.DataSource = dt;
-                    ClearForm();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error: " + ex.Message, "Kesalahan", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
+            _cache.Remove(CacheKey);
+            LoadData();
         }
 
         private void textAdmin_KeyPress(object sender, KeyPressEventArgs e)
@@ -371,14 +351,16 @@ namespace ProjectPABD_Forms
 
         private void btnImport_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Excel Files|*.xls;*.xlsx;*.xlsm";
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            using (var openFile = new OpenFileDialog())
             {
-                string filePath = openFileDialog.FileName;
-                PreviewData(filePath);
+                openFile.Filter = "Excel files|*.xlsx;*xlsm";
+                if (openFile.ShowDialog() == DialogResult.OK)
+                    PreviewData(openFile.FileName);
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
 
         private void PreviewData(string filePath)
         {
@@ -392,9 +374,7 @@ namespace ProjectPABD_Forms
 
                     IRow headerRow = sheet.GetRow(0);
                     foreach (var cell in headerRow.Cells)
-                    {
                         dt.Columns.Add(cell.ToString());
-                    }
 
                     for (int i = 1; i <= sheet.LastRowNum; i++)
                     {
@@ -403,8 +383,7 @@ namespace ProjectPABD_Forms
                         int cellIndex = 0;
                         foreach (var cell in dataRow.Cells)
                         {
-                            newRow[cellIndex] = cell.ToString();
-                            cellIndex++;
+                            newRow[cellIndex++] = cell.ToString();
                         }
                         dt.Rows.Add(newRow);
                     }
@@ -418,6 +397,26 @@ namespace ProjectPABD_Forms
                 MessageBox.Show("Error reading the Excel file: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void btnAnalyze_Click(object sender, EventArgs e)
+        {
+            var heavyQuery = "SELECT NamaKomunitas, NomorTeleponKomunitas, AdminKomunitas FROM dbo.Komunitas WHERE NamaKomunitas LIKE 'A%'";
+            AnalyzeQuery(heavyQuery);
+        }
+
+        private void dgwKomun_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+            var row = dgwKomun.Rows[e.RowIndex];
+            textID.Text = row.Cells[0].Value.ToString() ?? string.Empty;
+            textNama.Text = row.Cells[1].Value.ToString() ?? string.Empty;
+            textAdmin.Text = row.Cells[2].Value.ToString() ?? string.Empty;
+            textDeskripsi.Text = row.Cells[3].Value.ToString() ?? string.Empty;
+            textTelepon.Text = row.Cells[4].Value.ToString() ?? string.Empty;
+            textKategori.Text = row.Cells[5].Value.ToString() ?? string.Empty;
+            textAlamat.Text = row.Cells[6].Value.ToString() ?? string.Empty;
+            textEmail.Text = row.Cells[7].Value.ToString() ?? string.Empty;
+            textJumlah.Text = row.Cells[8].Value.ToString() ?? string.Empty;
+        }
     }
 }
-

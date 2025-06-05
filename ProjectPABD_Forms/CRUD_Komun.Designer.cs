@@ -34,6 +34,7 @@
             this.textJumlah = new System.Windows.Forms.TextBox();
             this.textEmail = new System.Windows.Forms.TextBox();
             this.textAlamat = new System.Windows.Forms.TextBox();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.textKategori = new System.Windows.Forms.TextBox();
             this.textTelepon = new System.Windows.Forms.TextBox();
             this.textDeskripsi = new System.Windows.Forms.TextBox();
@@ -51,6 +52,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnAnalyze = new System.Windows.Forms.Button();
+            this.btnImport = new System.Windows.Forms.Button();
             this.dgwKomun = new System.Windows.Forms.DataGridView();
             this.idKomunitasDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.namaKomunitasDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,9 +70,7 @@
             this.btnSimpan = new System.Windows.Forms.Button();
             this.btnUbah = new System.Windows.Forms.Button();
             this.btnHapus = new System.Windows.Forms.Button();
-            this.btnRefresh = new System.Windows.Forms.Button();
             this.komunitasTableAdapter = new ProjectPABD_Forms.Management_KomunitasDataSetTableAdapters.KomunitasTableAdapter();
-            this.btnImport = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgwKomun)).BeginInit();
@@ -94,6 +95,7 @@
             this.panel1.Controls.Add(this.textJumlah);
             this.panel1.Controls.Add(this.textEmail);
             this.panel1.Controls.Add(this.textAlamat);
+            this.panel1.Controls.Add(this.btnRefresh);
             this.panel1.Controls.Add(this.textKategori);
             this.panel1.Controls.Add(this.textTelepon);
             this.panel1.Controls.Add(this.textDeskripsi);
@@ -145,6 +147,19 @@
             this.textAlamat.TabIndex = 16;
             this.textAlamat.TextChanged += new System.EventHandler(this.textAlamat_TextChanged);
             this.textAlamat.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textAlamat_KeyPress);
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btnRefresh.ForeColor = System.Drawing.Color.White;
+            this.btnRefresh.Location = new System.Drawing.Point(537, 7);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(99, 38);
+            this.btnRefresh.TabIndex = 4;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.UseVisualStyleBackColor = false;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // textKategori
             // 
@@ -306,11 +321,39 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.Window;
+            this.panel2.Controls.Add(this.btnAnalyze);
+            this.panel2.Controls.Add(this.btnImport);
             this.panel2.Controls.Add(this.dgwKomun);
             this.panel2.Location = new System.Drawing.Point(674, 47);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(556, 659);
             this.panel2.TabIndex = 2;
+            // 
+            // btnAnalyze
+            // 
+            this.btnAnalyze.BackColor = System.Drawing.Color.DimGray;
+            this.btnAnalyze.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btnAnalyze.ForeColor = System.Drawing.Color.White;
+            this.btnAnalyze.Location = new System.Drawing.Point(308, 583);
+            this.btnAnalyze.Name = "btnAnalyze";
+            this.btnAnalyze.Size = new System.Drawing.Size(99, 38);
+            this.btnAnalyze.TabIndex = 9;
+            this.btnAnalyze.Text = "Analyze";
+            this.btnAnalyze.UseVisualStyleBackColor = false;
+            this.btnAnalyze.Click += new System.EventHandler(this.btnAnalyze_Click);
+            // 
+            // btnImport
+            // 
+            this.btnImport.BackColor = System.Drawing.Color.Black;
+            this.btnImport.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btnImport.ForeColor = System.Drawing.Color.White;
+            this.btnImport.Location = new System.Drawing.Point(436, 583);
+            this.btnImport.Name = "btnImport";
+            this.btnImport.Size = new System.Drawing.Size(99, 38);
+            this.btnImport.TabIndex = 8;
+            this.btnImport.Text = "Import";
+            this.btnImport.UseVisualStyleBackColor = false;
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
             // dgwKomun
             // 
@@ -333,7 +376,7 @@
             this.dgwKomun.RowTemplate.Height = 24;
             this.dgwKomun.Size = new System.Drawing.Size(556, 659);
             this.dgwKomun.TabIndex = 0;
-            this.dgwKomun.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgwKomun_CellContentClick);
+            this.dgwKomun.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgwKomun_CellClick);
             // 
             // idKomunitasDataGridViewTextBoxColumn
             // 
@@ -420,11 +463,9 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.Window;
-            this.panel3.Controls.Add(this.btnImport);
             this.panel3.Controls.Add(this.btnSimpan);
             this.panel3.Controls.Add(this.btnUbah);
             this.panel3.Controls.Add(this.btnHapus);
-            this.panel3.Controls.Add(this.btnRefresh);
             this.panel3.Location = new System.Drawing.Point(12, 599);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(656, 107);
@@ -435,7 +476,7 @@
             this.btnSimpan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.btnSimpan.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.btnSimpan.ForeColor = System.Drawing.Color.White;
-            this.btnSimpan.Location = new System.Drawing.Point(20, 11);
+            this.btnSimpan.Location = new System.Drawing.Point(20, 31);
             this.btnSimpan.Name = "btnSimpan";
             this.btnSimpan.Size = new System.Drawing.Size(99, 38);
             this.btnSimpan.TabIndex = 7;
@@ -448,7 +489,7 @@
             this.btnUbah.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.btnUbah.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.btnUbah.ForeColor = System.Drawing.Color.White;
-            this.btnUbah.Location = new System.Drawing.Point(188, 12);
+            this.btnUbah.Location = new System.Drawing.Point(150, 31);
             this.btnUbah.Name = "btnUbah";
             this.btnUbah.Size = new System.Drawing.Size(99, 38);
             this.btnUbah.TabIndex = 6;
@@ -461,7 +502,7 @@
             this.btnHapus.BackColor = System.Drawing.Color.Red;
             this.btnHapus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.btnHapus.ForeColor = System.Drawing.Color.White;
-            this.btnHapus.Location = new System.Drawing.Point(360, 12);
+            this.btnHapus.Location = new System.Drawing.Point(285, 31);
             this.btnHapus.Name = "btnHapus";
             this.btnHapus.Size = new System.Drawing.Size(99, 38);
             this.btnHapus.TabIndex = 5;
@@ -469,35 +510,9 @@
             this.btnHapus.UseVisualStyleBackColor = false;
             this.btnHapus.Click += new System.EventHandler(this.btnHapus_Click);
             // 
-            // btnRefresh
-            // 
-            this.btnRefresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnRefresh.ForeColor = System.Drawing.Color.White;
-            this.btnRefresh.Location = new System.Drawing.Point(520, 12);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(99, 38);
-            this.btnRefresh.TabIndex = 4;
-            this.btnRefresh.Text = "Refresh";
-            this.btnRefresh.UseVisualStyleBackColor = false;
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-            // 
             // komunitasTableAdapter
             // 
             this.komunitasTableAdapter.ClearBeforeFill = true;
-            // 
-            // btnImport
-            // 
-            this.btnImport.BackColor = System.Drawing.Color.Black;
-            this.btnImport.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnImport.ForeColor = System.Drawing.Color.White;
-            this.btnImport.Location = new System.Drawing.Point(105, 57);
-            this.btnImport.Name = "btnImport";
-            this.btnImport.Size = new System.Drawing.Size(99, 38);
-            this.btnImport.TabIndex = 8;
-            this.btnImport.Text = "Import";
-            this.btnImport.UseVisualStyleBackColor = false;
-            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
             // CRUD_Komun
             // 
@@ -567,6 +582,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn emailKomunitasDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn jumlahAnggotaDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button btnImport;
+        private System.Windows.Forms.Button btnAnalyze;
     }
 }
 

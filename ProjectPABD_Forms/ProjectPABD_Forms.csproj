@@ -83,6 +83,7 @@
     <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
@@ -118,6 +119,16 @@
     </Compile>
     <Compile Include="CRUD_Komun.Designer.cs">
       <DependentUpon>CRUD_Komun.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Management_KomunitasDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Management_KomunitasDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Management_KomunitasDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Management_KomunitasDataSet2.xsd</DependentUpon>
     </Compile>
     <Compile Include="Preview.cs">
       <SubType>Form</SubType>
@@ -157,6 +168,28 @@
     </None>
     <None Include="Management_KomunitasDataSet.xss">
       <DependentUpon>Management_KomunitasDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Management_KomunitasDataSet1.xsc">
+      <DependentUpon>Management_KomunitasDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="Management_KomunitasDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Management_KomunitasDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Management_KomunitasDataSet1.xss">
+      <DependentUpon>Management_KomunitasDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="Management_KomunitasDataSet2.xsc">
+      <DependentUpon>Management_KomunitasDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="Management_KomunitasDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Management_KomunitasDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Management_KomunitasDataSet2.xss">
+      <DependentUpon>Management_KomunitasDataSet2.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
