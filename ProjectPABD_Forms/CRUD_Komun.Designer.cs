@@ -69,6 +69,7 @@
             this.btnHapus = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.komunitasTableAdapter = new ProjectPABD_Forms.Management_KomunitasDataSetTableAdapters.KomunitasTableAdapter();
+            this.btnImport = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgwKomun)).BeginInit();
@@ -81,7 +82,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(469, 9);
+            this.label1.Location = new System.Drawing.Point(465, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(349, 25);
             this.label1.TabIndex = 0;
@@ -173,7 +174,6 @@
             this.textDeskripsi.Size = new System.Drawing.Size(453, 23);
             this.textDeskripsi.TabIndex = 13;
             this.textDeskripsi.TextChanged += new System.EventHandler(this.textDeskripsi_TextChanged);
-            this.textDeskripsi.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textDeskripsi_KeyPress);
             // 
             // textAdmin
             // 
@@ -420,6 +420,7 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.Window;
+            this.panel3.Controls.Add(this.btnImport);
             this.panel3.Controls.Add(this.btnSimpan);
             this.panel3.Controls.Add(this.btnUbah);
             this.panel3.Controls.Add(this.btnHapus);
@@ -434,7 +435,7 @@
             this.btnSimpan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.btnSimpan.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.btnSimpan.ForeColor = System.Drawing.Color.White;
-            this.btnSimpan.Location = new System.Drawing.Point(28, 36);
+            this.btnSimpan.Location = new System.Drawing.Point(20, 11);
             this.btnSimpan.Name = "btnSimpan";
             this.btnSimpan.Size = new System.Drawing.Size(99, 38);
             this.btnSimpan.TabIndex = 7;
@@ -447,7 +448,7 @@
             this.btnUbah.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.btnUbah.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.btnUbah.ForeColor = System.Drawing.Color.White;
-            this.btnUbah.Location = new System.Drawing.Point(186, 36);
+            this.btnUbah.Location = new System.Drawing.Point(188, 12);
             this.btnUbah.Name = "btnUbah";
             this.btnUbah.Size = new System.Drawing.Size(99, 38);
             this.btnUbah.TabIndex = 6;
@@ -460,7 +461,7 @@
             this.btnHapus.BackColor = System.Drawing.Color.Red;
             this.btnHapus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.btnHapus.ForeColor = System.Drawing.Color.White;
-            this.btnHapus.Location = new System.Drawing.Point(351, 36);
+            this.btnHapus.Location = new System.Drawing.Point(360, 12);
             this.btnHapus.Name = "btnHapus";
             this.btnHapus.Size = new System.Drawing.Size(99, 38);
             this.btnHapus.TabIndex = 5;
@@ -473,7 +474,7 @@
             this.btnRefresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.btnRefresh.ForeColor = System.Drawing.Color.White;
-            this.btnRefresh.Location = new System.Drawing.Point(520, 36);
+            this.btnRefresh.Location = new System.Drawing.Point(520, 12);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(99, 38);
             this.btnRefresh.TabIndex = 4;
@@ -485,7 +486,20 @@
             // 
             this.komunitasTableAdapter.ClearBeforeFill = true;
             // 
-            // Form1
+            // btnImport
+            // 
+            this.btnImport.BackColor = System.Drawing.Color.Black;
+            this.btnImport.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btnImport.ForeColor = System.Drawing.Color.White;
+            this.btnImport.Location = new System.Drawing.Point(105, 57);
+            this.btnImport.Name = "btnImport";
+            this.btnImport.Size = new System.Drawing.Size(99, 38);
+            this.btnImport.TabIndex = 8;
+            this.btnImport.Text = "Import";
+            this.btnImport.UseVisualStyleBackColor = false;
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
+            // 
+            // CRUD_Komun
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -495,8 +509,8 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label1);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "CRUD_Komun";
+            this.Text = "Data Komunitas";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -552,6 +566,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn alamatKomunitasDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn emailKomunitasDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn jumlahAnggotaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button btnImport;
     }
 }
 

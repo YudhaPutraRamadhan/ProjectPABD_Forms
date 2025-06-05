@@ -1,9 +1,12 @@
-﻿using System;
+﻿using NPOI.SS.UserModel;
+using NPOI.XSSF.UserModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -47,8 +50,7 @@ namespace ProjectPABD_Forms
                 try
                 {
                     conn.Open();
-                    string query = "SELECT IdKomunitas AS [ID], NamaKomunitas, AdminKomunitas, Deskripsi, NomorTeleponKomunitas," +
-                        "Kategori, AlamatKomunitas, EmailKomunitas, JumlahAnggota FROM Komunitas";
+                    string query = "SELECT IdKomunitas AS [ID], NamaKomunitas, AdminKomunitas, Deskripsi, NomorTeleponKomunitas, Kategori, AlamatKomunitas, EmailKomunitas, JumlahAnggota FROM Komunitas";
                     SqlDataAdapter da = new SqlDataAdapter(query, conn);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
@@ -142,11 +144,10 @@ namespace ProjectPABD_Forms
                         return;
                     }
                     conn.Open();
-                    string query = "INSERT INTO Komunitas (IdKomunitas, NamaKomunitas, AdminKomunitas, Deskripsi, NomorTeleponKomunitas," +
-                        "Kategori, AlamatKomunitas, EmailKomunitas, JumlahAnggota) VALUES (@IdKomunitas, @NamaKomunitas, @AdminKomunitas," +
-                        "@Deskripsi, @NomorTeleponKomunitas, @Kategori, @AlamatKomunitas, @EmailKomunitas, @JumlahAnggota)";
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    using (SqlCommand cmd = new SqlCommand("AddKomunitas", conn))
                     {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
                         cmd.Parameters.AddWithValue("@IdKomunitas", textID.Text);
                         cmd.Parameters.AddWithValue("@NamaKomunitas", textNama.Text);
                         cmd.Parameters.AddWithValue("@AdminKomunitas", textAdmin.Text);
@@ -162,6 +163,7 @@ namespace ProjectPABD_Forms
                         {
                             MessageBox.Show("Data berhasil disimpan!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             LoadData();
+                            ClearForm();
                         }
                         else
                         {
@@ -178,48 +180,48 @@ namespace ProjectPABD_Forms
 
         private void btnUbah_Click(object sender, EventArgs e)
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            if (dgwKomun.SelectedRows.Count > 0)
             {
-                try
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    if (textID.Text == "" || textNama.Text == "" || textAdmin.Text == "" || textDeskripsi.Text == "" ||
-                        textTelepon.Text == "" || textKategori.Text == "" || textAlamat.Text == "" || textEmail.Text == "" ||
-                        textJumlah.Text == "")
+                    try
                     {
-                        MessageBox.Show("Harap isi semua data!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-                    conn.Open();
-                    string query = "UPDATE Komunitas SET NamaKomunitas = @NamaKomunitas, AdminKomunitas = @AdminKomunitas," +
-                        "Deskripsi = @Deskripsi, NomorTeleponKomunitas = @NomorTeleponKomunitas, Kategori = @Kategori," +
-                        "AlamatKomunitas = @AlamatKomunitas, EmailKomunitas = @EmailKomunitas, JumlahAnggota = @JumlahAnggota WHERE IdKomunitas = @IdKomunitas";
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@IdKomunitas", textID.Text);
-                        cmd.Parameters.AddWithValue("@NamaKomunitas", textNama.Text.Trim());
-                        cmd.Parameters.AddWithValue("@AdminKomunitas", textAdmin.Text.Trim());
-                        cmd.Parameters.AddWithValue("@Deskripsi", textDeskripsi.Text.Trim());
-                        cmd.Parameters.AddWithValue("@NomorTeleponKomunitas", textTelepon.Text);
-                        cmd.Parameters.AddWithValue("@Kategori", textKategori.Text.Trim());
-                        cmd.Parameters.AddWithValue("@AlamatKomunitas", textAlamat.Text.Trim());
-                        cmd.Parameters.AddWithValue("@EmailKomunitas", textEmail.Text.Trim());
-                        cmd.Parameters.AddWithValue("@JumlahAnggota", textJumlah.Text.Trim());
-                        int rowsAffected = cmd.ExecuteNonQuery();
-                        if (rowsAffected > 0)
+                        conn.Open();
+                        using (SqlCommand cmd = new SqlCommand("UpdateKomunitas", conn))
                         {
-                            MessageBox.Show("Data berhasil diubah!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            LoadData();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Gagal mengubah data!", "Kesalahan", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            cmd.Parameters.AddWithValue("@IdKomunitas", textID.Text);
+                            cmd.Parameters.AddWithValue("@NamaKomunitas", textNama.Text.Trim());
+                            cmd.Parameters.AddWithValue("@AdminKomunitas", textAdmin.Text.Trim());
+                            cmd.Parameters.AddWithValue("@Deskripsi", textDeskripsi.Text.Trim());
+                            cmd.Parameters.AddWithValue("@NomorTeleponKomunitas", textTelepon.Text.Trim());
+                            cmd.Parameters.AddWithValue("@Kategori", textKategori.Text.Trim());
+                            cmd.Parameters.AddWithValue("@AlamatKomunitas", textAlamat.Text.Trim());
+                            cmd.Parameters.AddWithValue("@EmailKomunitas", textEmail.Text.Trim());
+                            cmd.Parameters.AddWithValue("@JumlahAnggota", textJumlah.Text.Trim());
+                            int rowsAffected = cmd.ExecuteNonQuery();
+                            if (rowsAffected > 0)
+                            {
+                                MessageBox.Show("Data berhasil diubah!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                LoadData();
+                                ClearForm();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Gagal mengubah data!", "Kesalahan", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                         }
                     }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message, "Kesalahan", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error: " + ex.Message, "Kesalahan", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            }
+            else
+            {
+                MessageBox.Show("Pilih data yang akan diubah!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -234,13 +236,13 @@ namespace ProjectPABD_Forms
                     {
                         try
                         {
-                            string idKomunitas = dgwKomun.SelectedRows[0].Cells[0].Value.ToString();
+                            string idKomunitas = dgwKomun.SelectedRows[0].Cells["IdKomunitas"].Value.ToString();
                             conn.Open();
-                            string query = "DELETE FROM Komunitas WHERE IdKomunitas = @IdKomunitas";
-
-                            using (SqlCommand cmd = new SqlCommand(query, conn))
+                            using (SqlCommand cmd = new SqlCommand("DeleteKomunitas", conn))
                             {
+                                cmd.CommandType = CommandType.StoredProcedure;
                                 cmd.Parameters.AddWithValue("@IdKomunitas", idKomunitas);
+                                
                                 int rowsAffected = cmd.ExecuteNonQuery();
                                 if (rowsAffected > 0)
                                 {
@@ -294,17 +296,6 @@ namespace ProjectPABD_Forms
         {
             if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
             {
-                e.Handled = true;
-
-                MessageBox.Show("Hanya huruf yang diperbolehkan untuk kolom ini!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
-        private void textDeskripsi_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
-            {
-
                 e.Handled = true;
 
                 MessageBox.Show("Hanya huruf yang diperbolehkan untuk kolom ini!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -375,6 +366,56 @@ namespace ProjectPABD_Forms
                 e.Handled = true;
 
                 MessageBox.Show("Kolom ini hanya boleh berisi angka!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void btnImport_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Excel Files|*.xls;*.xlsx;*.xlsm";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string filePath = openFileDialog.FileName;
+                PreviewData(filePath);
+            }
+        }
+
+        private void PreviewData(string filePath)
+        {
+            try
+            {
+                using (var fs = new FileStream(filePath, FileMode.Open,FileAccess.Read))
+                {
+                    IWorkbook workbook = new XSSFWorkbook(fs);
+                    ISheet sheet = workbook.GetSheetAt(0);
+                    DataTable dt = new DataTable();
+
+                    IRow headerRow = sheet.GetRow(0);
+                    foreach (var cell in headerRow.Cells)
+                    {
+                        dt.Columns.Add(cell.ToString());
+                    }
+
+                    for (int i = 1; i <= sheet.LastRowNum; i++)
+                    {
+                        IRow dataRow = sheet.GetRow(i);
+                        DataRow newRow = dt.NewRow();
+                        int cellIndex = 0;
+                        foreach (var cell in dataRow.Cells)
+                        {
+                            newRow[cellIndex] = cell.ToString();
+                            cellIndex++;
+                        }
+                        dt.Rows.Add(newRow);
+                    }
+
+                    Preview previewForm = new Preview(dt);
+                    previewForm.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error reading the Excel file: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
