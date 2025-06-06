@@ -418,5 +418,15 @@ namespace ProjectPABD_Forms
             textEmail.Text = row.Cells[7].Value.ToString() ?? string.Empty;
             textJumlah.Text = row.Cells[8].Value.ToString() ?? string.Empty;
         }
+
+        private void textID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+
+                MessageBox.Show("Kolom ini hanya boleh berisi angka!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
     }
 }

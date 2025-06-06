@@ -30,25 +30,33 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dgvPreview = new System.Windows.Forms.DataGridView();
-            this.btnOK = new System.Windows.Forms.Button();
-            this.management_KomunitasDataSet1 = new ProjectPABD_Forms.Management_KomunitasDataSet1();
             this.managementKomunitasDataSet1BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.management_KomunitasDataSet1 = new ProjectPABD_Forms.Management_KomunitasDataSet1();
+            this.btnOK = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPreview)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.management_KomunitasDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.managementKomunitasDataSet1BindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.management_KomunitasDataSet1)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvPreview
             // 
-            this.dgvPreview.AutoGenerateColumns = false;
             this.dgvPreview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPreview.DataSource = this.managementKomunitasDataSet1BindingSource;
             this.dgvPreview.Location = new System.Drawing.Point(88, 45);
             this.dgvPreview.Name = "dgvPreview";
             this.dgvPreview.RowHeadersWidth = 51;
             this.dgvPreview.RowTemplate.Height = 24;
             this.dgvPreview.Size = new System.Drawing.Size(571, 283);
             this.dgvPreview.TabIndex = 0;
+            // 
+            // managementKomunitasDataSet1BindingSource
+            // 
+            this.managementKomunitasDataSet1BindingSource.DataSource = this.management_KomunitasDataSet1;
+            this.managementKomunitasDataSet1BindingSource.Position = 0;
+            // 
+            // management_KomunitasDataSet1
+            // 
+            this.management_KomunitasDataSet1.DataSetName = "Management_KomunitasDataSet1";
+            this.management_KomunitasDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // btnOK
             // 
@@ -59,16 +67,6 @@
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
-            // 
-            // management_KomunitasDataSet1
-            // 
-            this.management_KomunitasDataSet1.DataSetName = "Management_KomunitasDataSet1";
-            this.management_KomunitasDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // managementKomunitasDataSet1BindingSource
-            // 
-            this.managementKomunitasDataSet1BindingSource.DataSource = this.management_KomunitasDataSet1;
-            this.managementKomunitasDataSet1BindingSource.Position = 0;
             // 
             // Preview
             // 
@@ -81,8 +79,8 @@
             this.Text = "Preview";
             this.Load += new System.EventHandler(this.Preview_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPreview)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.management_KomunitasDataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.managementKomunitasDataSet1BindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.management_KomunitasDataSet1)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -217,6 +217,7 @@
             this.textID.Size = new System.Drawing.Size(453, 23);
             this.textID.TabIndex = 10;
             this.textID.TextChanged += new System.EventHandler(this.textID_TextChanged);
+            this.textID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textID_KeyPress);
             // 
             // label11
             // 
