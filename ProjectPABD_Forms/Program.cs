@@ -16,7 +16,7 @@ namespace ProjectPABD_Forms
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Transaction());
+            Application.Run(new CRUD_Komun());
         }
     }
 }

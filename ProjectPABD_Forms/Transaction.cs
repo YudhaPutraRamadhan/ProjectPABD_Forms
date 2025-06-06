@@ -346,5 +346,12 @@ namespace ProjectPABD_Forms
             }
 
         }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            CRUD_Komun crudForm = new CRUD_Komun();
+            crudForm.Show();
+        }
     }
 }

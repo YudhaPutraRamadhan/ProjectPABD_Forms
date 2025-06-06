@@ -428,5 +428,12 @@ namespace ProjectPABD_Forms
                 MessageBox.Show("Kolom ini hanya boleh berisi angka!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+        private void btnTransaction_Click(object sender, EventArgs e)
+        {
+            Transaction transactionForm = new Transaction();
+            transactionForm.Show();
+            this.Hide();
+        }
     }
 }

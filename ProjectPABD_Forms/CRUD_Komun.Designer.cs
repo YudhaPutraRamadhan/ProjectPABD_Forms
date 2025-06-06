@@ -71,6 +71,7 @@
             this.btnUbah = new System.Windows.Forms.Button();
             this.btnHapus = new System.Windows.Forms.Button();
             this.komunitasTableAdapter = new ProjectPABD_Forms.Management_KomunitasDataSetTableAdapters.KomunitasTableAdapter();
+            this.btnTransaction = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgwKomun)).BeginInit();
@@ -464,6 +465,7 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.Window;
+            this.panel3.Controls.Add(this.btnTransaction);
             this.panel3.Controls.Add(this.btnSimpan);
             this.panel3.Controls.Add(this.btnUbah);
             this.panel3.Controls.Add(this.btnHapus);
@@ -514,6 +516,19 @@
             // komunitasTableAdapter
             // 
             this.komunitasTableAdapter.ClearBeforeFill = true;
+            // 
+            // btnTransaction
+            // 
+            this.btnTransaction.BackColor = System.Drawing.Color.Purple;
+            this.btnTransaction.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btnTransaction.ForeColor = System.Drawing.Color.White;
+            this.btnTransaction.Location = new System.Drawing.Point(448, 31);
+            this.btnTransaction.Name = "btnTransaction";
+            this.btnTransaction.Size = new System.Drawing.Size(171, 38);
+            this.btnTransaction.TabIndex = 8;
+            this.btnTransaction.Text = "Data Events ->";
+            this.btnTransaction.UseVisualStyleBackColor = false;
+            this.btnTransaction.Click += new System.EventHandler(this.btnTransaction_Click);
             // 
             // CRUD_Komun
             // 
@@ -584,6 +599,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn jumlahAnggotaDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.Button btnAnalyze;
+        private System.Windows.Forms.Button btnTransaction;
     }
 }
 
