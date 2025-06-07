@@ -105,6 +105,7 @@
             this.txtLokasi.Size = new System.Drawing.Size(298, 22);
             this.txtLokasi.TabIndex = 7;
             this.txtLokasi.TextChanged += new System.EventHandler(this.txtLokasi_TextChanged);
+            this.txtLokasi.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtLokasi_KeyPress);
             // 
             // dateTanggalEvent
             // 
@@ -150,6 +151,7 @@
             this.txtIdEvent.Size = new System.Drawing.Size(290, 22);
             this.txtIdEvent.TabIndex = 3;
             this.txtIdEvent.TextChanged += new System.EventHandler(this.txtIdEvent_TextChanged);
+            this.txtIdEvent.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIdEvent_KeyPress);
             // 
             // label5
             // 
@@ -251,6 +253,7 @@
             this.txtIdAktivitas.Size = new System.Drawing.Size(290, 22);
             this.txtIdAktivitas.TabIndex = 9;
             this.txtIdAktivitas.TextChanged += new System.EventHandler(this.txtIdAktivitas_TextChanged);
+            this.txtIdAktivitas.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIdAktivitas_KeyPress);
             // 
             // label8
             // 
