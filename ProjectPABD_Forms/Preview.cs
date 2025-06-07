@@ -76,7 +76,7 @@ namespace ProjectPABD_Forms
 
             if (!Regex.IsMatch(Alamat, @"^[a-zA-Z0-9\s]+$"))
             {
-                MessageBox.Show("Nama Kategori hanya boleh berisi huruf, angka, dan spasi", "Kesalahan Validasi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Alamat hanya boleh berisi huruf, angka, dan spasi", "Kesalahan Validasi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
@@ -129,7 +129,7 @@ namespace ProjectPABD_Forms
                 {
                    if (!ValidateRow(row))
                    {
-                        continue;
+                        return;
                    }
 
                    string query = "INSERT INTO Komunitas (IdKomunitas, NamaKomunitas, AdminKomunitas, Deskripsi, NomorTeleponKomunitas, Kategori, AlamatKomunitas, EmailKomunitas, JumlahAnggota) " +
@@ -160,6 +160,11 @@ namespace ProjectPABD_Forms
             {
                 MessageBox.Show("Terjadi kesalahan saat mengimpor data: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnTutup_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

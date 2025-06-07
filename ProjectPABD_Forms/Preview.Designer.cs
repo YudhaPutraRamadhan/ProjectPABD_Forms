@@ -33,6 +33,7 @@
             this.managementKomunitasDataSet1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.management_KomunitasDataSet1 = new ProjectPABD_Forms.Management_KomunitasDataSet1();
             this.btnOK = new System.Windows.Forms.Button();
+            this.btnTutup = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPreview)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.managementKomunitasDataSet1BindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.management_KomunitasDataSet1)).BeginInit();
@@ -60,7 +61,7 @@
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(562, 381);
+            this.btnOK.Location = new System.Drawing.Point(425, 377);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(97, 30);
             this.btnOK.TabIndex = 1;
@@ -68,11 +69,22 @@
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
+            // btnTutup
+            // 
+            this.btnTutup.Location = new System.Drawing.Point(562, 377);
+            this.btnTutup.Name = "btnTutup";
+            this.btnTutup.Size = new System.Drawing.Size(97, 30);
+            this.btnTutup.TabIndex = 2;
+            this.btnTutup.Text = "Tutup";
+            this.btnTutup.UseVisualStyleBackColor = true;
+            this.btnTutup.Click += new System.EventHandler(this.btnTutup_Click);
+            // 
             // Preview
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnTutup);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.dgvPreview);
             this.Name = "Preview";
@@ -91,5 +103,6 @@
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.BindingSource managementKomunitasDataSet1BindingSource;
         private Management_KomunitasDataSet1 management_KomunitasDataSet1;
+        private System.Windows.Forms.Button btnTutup;
     }
 }
