@@ -33,10 +33,9 @@
             // 
             // reportViewer1
             // 
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "ProjectPABD_Forms.AktivitasReport.rdlc";
-            this.reportViewer1.Location = new System.Drawing.Point(96, 104);
+            this.reportViewer1.Location = new System.Drawing.Point(84, 69);
             this.reportViewer1.Name = "reportViewer1";
-            this.reportViewer1.Size = new System.Drawing.Size(773, 423);
+            this.reportViewer1.Size = new System.Drawing.Size(767, 480);
             this.reportViewer1.TabIndex = 0;
             // 
             // FormAktivitas
@@ -44,7 +43,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Teal;
-            this.ClientSize = new System.Drawing.Size(994, 622);
+            this.ClientSize = new System.Drawing.Size(945, 622);
             this.Controls.Add(this.reportViewer1);
             this.Name = "FormAktivitas";
             this.Text = "FormAktivitas";

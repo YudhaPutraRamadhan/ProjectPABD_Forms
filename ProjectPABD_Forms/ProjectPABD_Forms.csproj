@@ -117,13 +117,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AktivitasDataSet.cs">
-      <DependentUpon>AktivitasDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="AktivitasDataSet.Designer.cs">
-      <DependentUpon>AktivitasDataSet.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AktivitasDataSet1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AktivitasDataSet.xsd</DependentUpon>
@@ -197,7 +191,7 @@
     <None Include="AktivitasDataSet.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>AktivitasDataSet1.Designer.cs</LastGenOutput>
+      <LastGenOutput>AktivitasDataSet.Designer.cs</LastGenOutput>
     </None>
     <None Include="AktivitasDataSet.xss">
       <DependentUpon>AktivitasDataSet.xsd</DependentUpon>

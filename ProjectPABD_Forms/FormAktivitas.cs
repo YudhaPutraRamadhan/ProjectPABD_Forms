@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace ProjectPABD_Forms
 {
-    public partial class FormAktivitas: Form
+    public partial class FormAktivitas : Form
     {
         public FormAktivitas()
         {
@@ -31,17 +31,17 @@ namespace ProjectPABD_Forms
 
             string query = @"
                 SELECT
-                    a.IdAktivitas, 
-                    a.JenisAktivitas, 
-                    a.StatusAktivitas, 
-                    e.IdEvents, 
-                    e.NamaEvents, 
+                    a.IdAktivitas,
+                    a.JenisAktivitas,
+                    a.StatusAktivitas,
+                    e.IdEvents,
+                    e.NamaEvents,
                     e.TanggalEvent,
-                    e.LokasiEvent
+                    e.Lokasi
                 FROM
                     AktivitasKomunitas a
                 JOIN
-                    Events e ON a.IdAktivitas = e.IdAktivitas";
+                    Event e ON a.IdAktivitas = e.IdAktivitas";
 
             DataTable dt = new DataTable();
 
@@ -51,7 +51,7 @@ namespace ProjectPABD_Forms
                 da.Fill(dt);
             }
 
-            ReportDataSource rds = new ReportDataSource("DataSetAktivitas", dt);
+            ReportDataSource rds = new ReportDataSource("DataSet_AktivitasKomunitas", dt);
 
             reportViewer1.LocalReport.DataSources.Clear();
             reportViewer1.LocalReport.DataSources.Add(rds);
