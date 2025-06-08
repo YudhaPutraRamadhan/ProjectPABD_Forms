@@ -34,5 +34,16 @@ namespace ProjectPABD_Forms.Properties {
                 return ((string)(this["Management_KomunitasConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=PAVILIONGAME\\YUDHA_PUTRA_RAMA;Initial Catalog=Management_Komunitas;In" +
+            "tegrated Security=True;TrustServerCertificate=True")]
+        public string Management_KomunitasConnectionString1 {
+            get {
+                return ((string)(this["Management_KomunitasConnectionString1"]));
+            }
+        }
     }
 }

@@ -51,6 +51,9 @@
     <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.IO.RecyclableMemoryStream.3.0.0\lib\netstandard2.0\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.WinForms.v12.12.0.0.1\lib\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
     <Reference Include="NPOI.Core, Version=2.7.3.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
       <HintPath>..\packages\NPOI.2.7.3\lib\net472\NPOI.Core.dll</HintPath>
     </Reference>
@@ -114,11 +117,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AktivitasDataSet.cs">
+      <DependentUpon>AktivitasDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="AktivitasDataSet.Designer.cs">
+      <DependentUpon>AktivitasDataSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AktivitasDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AktivitasDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="CRUD_Komun.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CRUD_Komun.Designer.cs">
       <DependentUpon>CRUD_Komun.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAktivitas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAktivitas.Designer.cs">
+      <DependentUpon>FormAktivitas.cs</DependentUpon>
     </Compile>
     <Compile Include="Management_KomunitasDataSet1.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -149,8 +169,12 @@
     <Compile Include="Transaction.Designer.cs">
       <DependentUpon>Transaction.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AktivitasReport.rdlc" />
     <EmbeddedResource Include="CRUD_Komun.resx">
       <DependentUpon>CRUD_Komun.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAktivitas.resx">
+      <DependentUpon>FormAktivitas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Preview.resx">
       <DependentUpon>Preview.cs</DependentUpon>
@@ -167,6 +191,17 @@
     <EmbeddedResource Include="Transaction.resx">
       <DependentUpon>Transaction.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="AktivitasDataSet.xsc">
+      <DependentUpon>AktivitasDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="AktivitasDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AktivitasDataSet1.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="AktivitasDataSet.xss">
+      <DependentUpon>AktivitasDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Management_KomunitasDataSet.xsc">
       <DependentUpon>Management_KomunitasDataSet.xsd</DependentUpon>
     </None>

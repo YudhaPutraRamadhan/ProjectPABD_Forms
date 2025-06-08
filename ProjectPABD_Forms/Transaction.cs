@@ -384,5 +384,12 @@ namespace ProjectPABD_Forms
                 MessageBox.Show("Kolom ini hanya boleh berisi angka!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+        private void btnLaporan_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            FormAktivitas formAktivitas = new FormAktivitas();
+            formAktivitas.Show();
+        }
     }
 }

@@ -55,6 +55,7 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
+            this.btnLaporan = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -361,12 +362,24 @@
             this.btnBack.UseVisualStyleBackColor = false;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
+            // btnLaporan
+            // 
+            this.btnLaporan.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLaporan.Location = new System.Drawing.Point(673, 741);
+            this.btnLaporan.Name = "btnLaporan";
+            this.btnLaporan.Size = new System.Drawing.Size(167, 34);
+            this.btnLaporan.TabIndex = 10;
+            this.btnLaporan.Text = "Lihat Laporan";
+            this.btnLaporan.UseVisualStyleBackColor = true;
+            this.btnLaporan.Click += new System.EventHandler(this.btnLaporan_Click);
+            // 
             // Transaction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1022, 835);
+            this.Controls.Add(this.btnLaporan);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnUpdate);
@@ -421,5 +434,6 @@
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.Button btnLaporan;
     }
 }
