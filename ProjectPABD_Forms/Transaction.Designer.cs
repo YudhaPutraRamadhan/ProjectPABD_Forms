@@ -56,6 +56,7 @@
             this.btnRefresh = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
             this.btnLaporan = new System.Windows.Forms.Button();
+            this.btnKembali = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -65,6 +66,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.Highlight;
+            this.panel1.Controls.Add(this.btnKembali);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(-2, 0);
             this.panel1.Name = "panel1";
@@ -76,7 +78,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(25, 21);
+            this.label1.Location = new System.Drawing.Point(680, 19);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(332, 22);
             this.label1.TabIndex = 0;
@@ -365,13 +367,25 @@
             // btnLaporan
             // 
             this.btnLaporan.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLaporan.Location = new System.Drawing.Point(673, 741);
+            this.btnLaporan.Location = new System.Drawing.Point(817, 667);
             this.btnLaporan.Name = "btnLaporan";
             this.btnLaporan.Size = new System.Drawing.Size(167, 34);
             this.btnLaporan.TabIndex = 10;
             this.btnLaporan.Text = "Lihat Laporan";
             this.btnLaporan.UseVisualStyleBackColor = true;
             this.btnLaporan.Click += new System.EventHandler(this.btnLaporan_Click);
+            // 
+            // btnKembali
+            // 
+            this.btnKembali.BackColor = System.Drawing.Color.Red;
+            this.btnKembali.ForeColor = System.Drawing.Color.White;
+            this.btnKembali.Location = new System.Drawing.Point(29, 17);
+            this.btnKembali.Name = "btnKembali";
+            this.btnKembali.Size = new System.Drawing.Size(108, 30);
+            this.btnKembali.TabIndex = 1;
+            this.btnKembali.Text = "Back";
+            this.btnKembali.UseVisualStyleBackColor = false;
+            this.btnKembali.Click += new System.EventHandler(this.btnKembali_Click);
             // 
             // Transaction
             // 
@@ -435,5 +449,6 @@
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Button btnLaporan;
+        private System.Windows.Forms.Button btnKembali;
     }
 }

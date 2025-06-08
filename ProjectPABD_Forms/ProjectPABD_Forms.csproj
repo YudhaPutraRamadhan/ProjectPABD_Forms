@@ -122,6 +122,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AktivitasDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Beranda.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Beranda.Designer.cs">
+      <DependentUpon>Beranda.cs</DependentUpon>
+    </Compile>
     <Compile Include="CRUD_Komun.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -164,6 +170,9 @@
       <DependentUpon>Transaction.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AktivitasReport.rdlc" />
+    <EmbeddedResource Include="Beranda.resx">
+      <DependentUpon>Beranda.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CRUD_Komun.resx">
       <DependentUpon>CRUD_Komun.cs</DependentUpon>
     </EmbeddedResource>

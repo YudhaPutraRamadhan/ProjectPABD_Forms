@@ -391,5 +391,12 @@ namespace ProjectPABD_Forms
             FormAktivitas formAktivitas = new FormAktivitas();
             formAktivitas.Show();
         }
+
+        private void btnKembali_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Beranda berandaForm = new Beranda();
+            berandaForm.Show();
+        }
     }
 }

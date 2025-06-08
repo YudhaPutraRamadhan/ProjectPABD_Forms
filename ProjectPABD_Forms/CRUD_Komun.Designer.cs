@@ -67,11 +67,12 @@
             this.komunitasBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.management_KomunitasDataSet = new ProjectPABD_Forms.Management_KomunitasDataSet();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnTransaction = new System.Windows.Forms.Button();
             this.btnSimpan = new System.Windows.Forms.Button();
             this.btnUbah = new System.Windows.Forms.Button();
             this.btnHapus = new System.Windows.Forms.Button();
             this.komunitasTableAdapter = new ProjectPABD_Forms.Management_KomunitasDataSetTableAdapters.KomunitasTableAdapter();
-            this.btnTransaction = new System.Windows.Forms.Button();
+            this.btnKembali = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgwKomun)).BeginInit();
@@ -474,6 +475,19 @@
             this.panel3.Size = new System.Drawing.Size(656, 107);
             this.panel3.TabIndex = 3;
             // 
+            // btnTransaction
+            // 
+            this.btnTransaction.BackColor = System.Drawing.Color.Purple;
+            this.btnTransaction.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btnTransaction.ForeColor = System.Drawing.Color.White;
+            this.btnTransaction.Location = new System.Drawing.Point(448, 31);
+            this.btnTransaction.Name = "btnTransaction";
+            this.btnTransaction.Size = new System.Drawing.Size(171, 38);
+            this.btnTransaction.TabIndex = 8;
+            this.btnTransaction.Text = "Data Events ->";
+            this.btnTransaction.UseVisualStyleBackColor = false;
+            this.btnTransaction.Click += new System.EventHandler(this.btnTransaction_Click);
+            // 
             // btnSimpan
             // 
             this.btnSimpan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
@@ -517,18 +531,18 @@
             // 
             this.komunitasTableAdapter.ClearBeforeFill = true;
             // 
-            // btnTransaction
+            // btnKembali
             // 
-            this.btnTransaction.BackColor = System.Drawing.Color.Purple;
-            this.btnTransaction.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnTransaction.ForeColor = System.Drawing.Color.White;
-            this.btnTransaction.Location = new System.Drawing.Point(448, 31);
-            this.btnTransaction.Name = "btnTransaction";
-            this.btnTransaction.Size = new System.Drawing.Size(171, 38);
-            this.btnTransaction.TabIndex = 8;
-            this.btnTransaction.Text = "Data Events ->";
-            this.btnTransaction.UseVisualStyleBackColor = false;
-            this.btnTransaction.Click += new System.EventHandler(this.btnTransaction_Click);
+            this.btnKembali.BackColor = System.Drawing.Color.Red;
+            this.btnKembali.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btnKembali.ForeColor = System.Drawing.Color.White;
+            this.btnKembali.Location = new System.Drawing.Point(33, 6);
+            this.btnKembali.Name = "btnKembali";
+            this.btnKembali.Size = new System.Drawing.Size(99, 38);
+            this.btnKembali.TabIndex = 9;
+            this.btnKembali.Text = "Kembali";
+            this.btnKembali.UseVisualStyleBackColor = false;
+            this.btnKembali.Click += new System.EventHandler(this.btnKembali_Click);
             // 
             // CRUD_Komun
             // 
@@ -536,6 +550,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(1242, 706);
+            this.Controls.Add(this.btnKembali);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -600,6 +615,7 @@
         private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.Button btnAnalyze;
         private System.Windows.Forms.Button btnTransaction;
+        private System.Windows.Forms.Button btnKembali;
     }
 }
 

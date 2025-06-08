@@ -435,5 +435,12 @@ namespace ProjectPABD_Forms
             transactionForm.Show();
             this.Hide();
         }
+
+        private void btnKembali_Click(object sender, EventArgs e)
+        {
+            Beranda berandaForm = new Beranda();
+            berandaForm.Show();
+            this.Hide();
+        }
     }
 }

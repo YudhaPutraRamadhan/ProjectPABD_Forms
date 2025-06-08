@@ -456,8 +456,8 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet_AktivitasKomunitas</DataSetName>
-        <Top>3.78037cm</Top>
-        <Left>1.2192cm</Left>
+        <Top>2.2987cm</Top>
+        <Left>0.41487cm</Left>
         <Height>1.2cm</Height>
         <Width>18.44463cm</Width>
         <Style>
@@ -467,10 +467,10 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>3.75833in</Height>
+    <Height>2.46667in</Height>
     <Style />
   </Body>
-  <Width>8.2in</Width>
+  <Width>7.61667in</Width>
   <Page>
     <PageHeight>29.7cm</PageHeight>
     <PageWidth>21cm</PageWidth>

@@ -59,5 +59,12 @@ namespace ProjectPABD_Forms
             reportViewer1.LocalReport.ReportPath = @"C:\Pengembangan Aplikasi Basis Data\ProjectPABD_Forms\ProjectPABD_Forms\AktivitasReport.rdlc";
             reportViewer1.RefreshReport();
         }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Transaction transaction = new Transaction();
+            transaction.Show();
+        }
     }
 }
