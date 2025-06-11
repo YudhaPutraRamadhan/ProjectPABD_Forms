@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Transaction));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnKembali = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.txtLokasi = new System.Windows.Forms.TextBox();
@@ -56,7 +58,6 @@
             this.btnRefresh = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
             this.btnLaporan = new System.Windows.Forms.Button();
-            this.btnKembali = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -73,12 +74,24 @@
             this.panel1.Size = new System.Drawing.Size(1024, 63);
             this.panel1.TabIndex = 0;
             // 
+            // btnKembali
+            // 
+            this.btnKembali.BackColor = System.Drawing.Color.Red;
+            this.btnKembali.ForeColor = System.Drawing.Color.White;
+            this.btnKembali.Location = new System.Drawing.Point(29, 17);
+            this.btnKembali.Name = "btnKembali";
+            this.btnKembali.Size = new System.Drawing.Size(108, 30);
+            this.btnKembali.TabIndex = 1;
+            this.btnKembali.Text = "Back";
+            this.btnKembali.UseVisualStyleBackColor = false;
+            this.btnKembali.Click += new System.EventHandler(this.btnKembali_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(680, 19);
+            this.label1.Location = new System.Drawing.Point(628, 19);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(332, 22);
             this.label1.TabIndex = 0;
@@ -356,11 +369,11 @@
             this.btnBack.BackColor = System.Drawing.Color.Purple;
             this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBack.ForeColor = System.Drawing.Color.White;
-            this.btnBack.Location = new System.Drawing.Point(883, 740);
+            this.btnBack.Location = new System.Drawing.Point(756, 740);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(101, 37);
+            this.btnBack.Size = new System.Drawing.Size(243, 37);
             this.btnBack.TabIndex = 9;
-            this.btnBack.Text = "Back";
+            this.btnBack.Text = "  Data Komunitas   ->";
             this.btnBack.UseVisualStyleBackColor = false;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
@@ -374,18 +387,6 @@
             this.btnLaporan.Text = "Lihat Laporan";
             this.btnLaporan.UseVisualStyleBackColor = true;
             this.btnLaporan.Click += new System.EventHandler(this.btnLaporan_Click);
-            // 
-            // btnKembali
-            // 
-            this.btnKembali.BackColor = System.Drawing.Color.Red;
-            this.btnKembali.ForeColor = System.Drawing.Color.White;
-            this.btnKembali.Location = new System.Drawing.Point(29, 17);
-            this.btnKembali.Name = "btnKembali";
-            this.btnKembali.Size = new System.Drawing.Size(108, 30);
-            this.btnKembali.TabIndex = 1;
-            this.btnKembali.Text = "Back";
-            this.btnKembali.UseVisualStyleBackColor = false;
-            this.btnKembali.Click += new System.EventHandler(this.btnKembali_Click);
             // 
             // Transaction
             // 
@@ -404,8 +405,9 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Transaction";
-            this.Text = "Transaction";
+            this.Text = "HobbyYK";
             this.Load += new System.EventHandler(this.Transaction_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

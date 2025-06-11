@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Preview));
             this.dgvPreview = new System.Windows.Forms.DataGridView();
             this.managementKomunitasDataSet1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.management_KomunitasDataSet1 = new ProjectPABD_Forms.Management_KomunitasDataSet1();
@@ -87,8 +88,9 @@
             this.Controls.Add(this.btnTutup);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.dgvPreview);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Preview";
-            this.Text = "Preview";
+            this.Text = "HobbyYK";
             this.Load += new System.EventHandler(this.Preview_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPreview)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.managementKomunitasDataSet1BindingSource)).EndInit();

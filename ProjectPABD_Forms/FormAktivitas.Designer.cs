@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAktivitas));
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.btnBack = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -58,8 +59,9 @@
             this.ClientSize = new System.Drawing.Size(945, 622);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.reportViewer1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormAktivitas";
-            this.Text = "FormAktivitas";
+            this.Text = "HobbyYK";
             this.Load += new System.EventHandler(this.FormAktivitas_Load);
             this.ResumeLayout(false);
 

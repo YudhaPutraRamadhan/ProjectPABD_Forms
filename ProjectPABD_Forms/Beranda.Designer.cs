@@ -104,8 +104,9 @@
             this.Controls.Add(this.pnlAktivitas);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pnlKomunitas);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Beranda";
-            this.Text = "Beranda";
+            this.Text = "HobbyYK";
             this.Load += new System.EventHandler(this.Beranda_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
