@@ -116,6 +116,7 @@
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(258, 22);
             this.txtUsername.TabIndex = 6;
+            this.txtUsername.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUsername_KeyPress);
             // 
             // txtPassword
             // 
@@ -130,11 +131,12 @@
             this.txtNomortelp.Name = "txtNomortelp";
             this.txtNomortelp.Size = new System.Drawing.Size(258, 22);
             this.txtNomortelp.TabIndex = 8;
+            this.txtNomortelp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNomortelp_KeyPress);
             // 
             // cmbKomunitas
             // 
             this.cmbKomunitas.FormattingEnabled = true;
-            this.cmbKomunitas.Location = new System.Drawing.Point(641, 237);
+            this.cmbKomunitas.Location = new System.Drawing.Point(663, 237);
             this.cmbKomunitas.Name = "cmbKomunitas";
             this.cmbKomunitas.Size = new System.Drawing.Size(258, 24);
             this.cmbKomunitas.TabIndex = 10;
@@ -155,7 +157,7 @@
             this.rbPerempuan.AutoSize = true;
             this.rbPerempuan.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbPerempuan.ForeColor = System.Drawing.Color.White;
-            this.rbPerempuan.Location = new System.Drawing.Point(749, 167);
+            this.rbPerempuan.Location = new System.Drawing.Point(763, 167);
             this.rbPerempuan.Name = "rbPerempuan";
             this.rbPerempuan.Size = new System.Drawing.Size(42, 24);
             this.rbPerempuan.TabIndex = 15;
@@ -168,7 +170,7 @@
             this.rbLakiLaki.AutoSize = true;
             this.rbLakiLaki.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbLakiLaki.ForeColor = System.Drawing.Color.White;
-            this.rbLakiLaki.Location = new System.Drawing.Point(663, 167);
+            this.rbLakiLaki.Location = new System.Drawing.Point(677, 167);
             this.rbLakiLaki.Name = "rbLakiLaki";
             this.rbLakiLaki.Size = new System.Drawing.Size(41, 24);
             this.rbLakiLaki.TabIndex = 16;
@@ -181,7 +183,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Teal;
-            this.ClientSize = new System.Drawing.Size(924, 526);
+            this.ClientSize = new System.Drawing.Size(966, 526);
             this.Controls.Add(this.rbLakiLaki);
             this.Controls.Add(this.rbPerempuan);
             this.Controls.Add(this.btnDaftar);
