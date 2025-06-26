@@ -35,5 +35,10 @@ namespace ProjectPABD_Forms
             Transaction transaction = new Transaction();
             transaction.Show();
         }
+
+        private void btnLogOut_Click(object sender, EventArgs e)
+        {
+            LoginForm.Logout();
+        }
     }
 }

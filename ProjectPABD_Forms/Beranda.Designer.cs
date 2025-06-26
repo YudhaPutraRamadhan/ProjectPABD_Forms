@@ -34,6 +34,7 @@
             this.pnlAktivitas = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnLogOut = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // pnlKomunitas
@@ -53,11 +54,11 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Helvetica Neue", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(238, 54);
+            this.label1.Location = new System.Drawing.Point(152, 64);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(506, 53);
+            this.label1.Size = new System.Drawing.Size(682, 53);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Welcome to HobbyYk";
+            this.label1.Text = "Dashboard Admin Komunitas";
             // 
             // pnlAktivitas
             // 
@@ -93,12 +94,26 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "Data Aktivitas dan Event";
             // 
+            // btnLogOut
+            // 
+            this.btnLogOut.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnLogOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogOut.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnLogOut.Location = new System.Drawing.Point(27, 28);
+            this.btnLogOut.Name = "btnLogOut";
+            this.btnLogOut.Size = new System.Drawing.Size(111, 35);
+            this.btnLogOut.TabIndex = 5;
+            this.btnLogOut.Text = "Log Out";
+            this.btnLogOut.UseVisualStyleBackColor = false;
+            this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
+            // 
             // Beranda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Teal;
             this.ClientSize = new System.Drawing.Size(987, 615);
+            this.Controls.Add(this.btnLogOut);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.pnlAktivitas);
@@ -120,5 +135,6 @@
         private System.Windows.Forms.Panel pnlAktivitas;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnLogOut;
     }
 }
