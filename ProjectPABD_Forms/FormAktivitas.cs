@@ -63,7 +63,7 @@ namespace ProjectPABD_Forms
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Transaction transaction = new Transaction();
+            DataAktivitasKomunitas transaction = new DataAktivitasKomunitas();
             transaction.Show();
         }
     }

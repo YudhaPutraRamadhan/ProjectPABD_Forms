@@ -26,5 +26,33 @@ namespace ProjectPABD_Forms
         {
 
         }
+
+        private void pnlKomunitas_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            DataKomunitas cRUD_Komun = new DataKomunitas();
+            cRUD_Komun.Show();
+        }
+
+        private void pnlAktivitas_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            DataAktivitasKomunitas transaction = new DataAktivitasKomunitas();
+            transaction.Show();
+        }
+
+        private void pnlAdminKomunitas_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            KelolaAdminKomun kelolaAdminKomun = new KelolaAdminKomun();
+            kelolaAdminKomun.Show();
+        }
+
+        private void pnlPengguna_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            KelolaUser kelolaUser = new KelolaUser();
+            kelolaUser.Show();
+        }
     }
 }

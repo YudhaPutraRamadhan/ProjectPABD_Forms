@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ProjectPABD_Forms
 {
-    public partial class Beranda: Form
+    public partial class DashboardAdminKomun: Form
     {
-        public Beranda()
+        public DashboardAdminKomun()
         {
             InitializeComponent();
         }
@@ -25,14 +25,14 @@ namespace ProjectPABD_Forms
         private void pnlKomunitas_Click(object sender, EventArgs e)
         {
             this.Hide();
-            CRUD_Komun cRUD_Komun = new CRUD_Komun();
+            DataKomunitas cRUD_Komun = new DataKomunitas();
             cRUD_Komun.Show();
         }
 
         private void pnlAktivitas_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Transaction transaction = new Transaction();
+            DataAktivitasKomunitas transaction = new DataAktivitasKomunitas();
             transaction.Show();
         }
 

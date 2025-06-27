@@ -1,6 +1,6 @@
 ﻿namespace ProjectPABD_Forms
 {
-    partial class Beranda
+    partial class DashboardAdminKomun
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Beranda));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DashboardAdminKomun));
             this.pnlKomunitas = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.pnlAktivitas = new System.Windows.Forms.Panel();
@@ -66,7 +66,7 @@
             this.pnlAktivitas.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnlAktivitas.BackgroundImage")));
             this.pnlAktivitas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pnlAktivitas.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pnlAktivitas.Location = new System.Drawing.Point(577, 160);
+            this.pnlAktivitas.Location = new System.Drawing.Point(577, 161);
             this.pnlAktivitas.Name = "pnlAktivitas";
             this.pnlAktivitas.Size = new System.Drawing.Size(324, 286);
             this.pnlAktivitas.TabIndex = 2;
@@ -99,7 +99,7 @@
             this.btnLogOut.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btnLogOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogOut.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnLogOut.Location = new System.Drawing.Point(27, 28);
+            this.btnLogOut.Location = new System.Drawing.Point(21, 21);
             this.btnLogOut.Name = "btnLogOut";
             this.btnLogOut.Size = new System.Drawing.Size(111, 35);
             this.btnLogOut.TabIndex = 5;
@@ -107,7 +107,7 @@
             this.btnLogOut.UseVisualStyleBackColor = false;
             this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
             // 
-            // Beranda
+            // DashboardAdminKomun
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -120,7 +120,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pnlKomunitas);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Beranda";
+            this.Name = "DashboardAdminKomun";
             this.Text = "HobbyYK";
             this.Load += new System.EventHandler(this.Beranda_Load);
             this.ResumeLayout(false);

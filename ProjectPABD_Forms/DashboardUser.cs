@@ -16,5 +16,29 @@ namespace ProjectPABD_Forms
         {
             InitializeComponent();
         }
+
+        private void pnlKomunitas_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            KomunitasUser komunitasUser = new KomunitasUser();
+            komunitasUser.Show();
+        }
+
+        private void pnlAktivitas_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            AktivitasKomunUser aktivitasKomunUser = new AktivitasKomunUser();
+            aktivitasKomunUser.Show();
+        }
+
+        private void DashboardUser_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnLogOut_Click(object sender, EventArgs e)
+        {
+            LoginForm.Logout();
+        }
     }
 }

@@ -122,7 +122,7 @@ namespace ProjectPABD_Forms
                     dashboardAdmin.Show();
                     break;
                 case "Admin Komunitas":
-                    Beranda beranda = new Beranda();
+                    DashboardAdminKomun beranda = new DashboardAdminKomun();
                     beranda.Show();
                     break;
                 case "Pengguna":

@@ -15,7 +15,7 @@ using System.Windows.Forms;
 
 namespace ProjectPABD_Forms
 {
-    public partial class CRUD_Komun: Form
+    public partial class DataKomunitas: Form
     {
         // Connection string to connect to the database
         private readonly string connectionString = "Data Source=PAVILIONGAME\\YUDHA_PUTRA_RAMA;Initial Catalog=Management_Komunitas;Integrated Security=True";
@@ -27,7 +27,7 @@ namespace ProjectPABD_Forms
         };
         private const string CacheKey = "KomunitasData";
 
-        public CRUD_Komun()
+        public DataKomunitas()
         {
             InitializeComponent();
         }
@@ -431,15 +431,32 @@ namespace ProjectPABD_Forms
 
         private void btnTransaction_Click(object sender, EventArgs e)
         {
-            Transaction transactionForm = new Transaction();
+            DataAktivitasKomunitas transactionForm = new DataAktivitasKomunitas();
             transactionForm.Show();
             this.Hide();
         }
 
         private void btnKembali_Click(object sender, EventArgs e)
         {
-            Beranda berandaForm = new Beranda();
-            berandaForm.Show();
+            RedirectBasedOnRole();
+        }
+
+        private void RedirectBasedOnRole()
+        {
+            switch (UserSession.RoleName)
+            {
+                case "Super Admin":
+                    DashboardAdmin dashboardAdmin = new DashboardAdmin();
+                    dashboardAdmin.Show();
+                    break;
+                case "Admin Komunitas":
+                    DashboardAdminKomun beranda = new DashboardAdminKomun();
+                    beranda.Show();
+                    break;
+                default:
+                    MessageBox.Show("Role tidak dikenal: " + UserSession.RoleName);
+                    break;
+            }
             this.Hide();
         }
     }

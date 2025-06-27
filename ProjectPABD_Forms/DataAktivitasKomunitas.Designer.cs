@@ -1,6 +1,6 @@
 ﻿namespace ProjectPABD_Forms
 {
-    partial class Transaction
+    partial class DataAktivitasKomunitas
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Transaction));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataAktivitasKomunitas));
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnKembali = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();

@@ -122,17 +122,23 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AktivitasDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Beranda.cs">
+    <Compile Include="AktivitasKomunUser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Beranda.Designer.cs">
-      <DependentUpon>Beranda.cs</DependentUpon>
+    <Compile Include="AktivitasKomunUser.Designer.cs">
+      <DependentUpon>AktivitasKomunUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="CRUD_Komun.cs">
+    <Compile Include="DashboardAdminKomun.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CRUD_Komun.Designer.cs">
-      <DependentUpon>CRUD_Komun.cs</DependentUpon>
+    <Compile Include="DashboardAdminKomun.Designer.cs">
+      <DependentUpon>DashboardAdminKomun.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataKomunitas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DataKomunitas.Designer.cs">
+      <DependentUpon>DataKomunitas.cs</DependentUpon>
     </Compile>
     <Compile Include="DashboardAdmin.cs">
       <SubType>Form</SubType>
@@ -152,6 +158,24 @@
     </Compile>
     <Compile Include="FormAktivitas.Designer.cs">
       <DependentUpon>FormAktivitas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KelolaAdminKomun.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KelolaAdminKomun.Designer.cs">
+      <DependentUpon>KelolaAdminKomun.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KelolaUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KelolaUser.Designer.cs">
+      <DependentUpon>KelolaUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KomunitasUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KomunitasUser.Designer.cs">
+      <DependentUpon>KomunitasUser.cs</DependentUpon>
     </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
@@ -188,18 +212,21 @@
     <Compile Include="SignUp.Designer.cs">
       <DependentUpon>SignUp.cs</DependentUpon>
     </Compile>
-    <Compile Include="Transaction.cs">
+    <Compile Include="DataAktivitasKomunitas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Transaction.Designer.cs">
-      <DependentUpon>Transaction.cs</DependentUpon>
+    <Compile Include="DataAktivitasKomunitas.Designer.cs">
+      <DependentUpon>DataAktivitasKomunitas.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AktivitasReport.rdlc" />
-    <EmbeddedResource Include="Beranda.resx">
-      <DependentUpon>Beranda.cs</DependentUpon>
+    <EmbeddedResource Include="AktivitasKomunUser.resx">
+      <DependentUpon>AktivitasKomunUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CRUD_Komun.resx">
-      <DependentUpon>CRUD_Komun.cs</DependentUpon>
+    <EmbeddedResource Include="AktivitasReport.rdlc" />
+    <EmbeddedResource Include="DashboardAdminKomun.resx">
+      <DependentUpon>DashboardAdminKomun.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataKomunitas.resx">
+      <DependentUpon>DataKomunitas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DashboardAdmin.resx">
       <DependentUpon>DashboardAdmin.cs</DependentUpon>
@@ -209,6 +236,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAktivitas.resx">
       <DependentUpon>FormAktivitas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KelolaAdminKomun.resx">
+      <DependentUpon>KelolaAdminKomun.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KelolaUser.resx">
+      <DependentUpon>KelolaUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KomunitasUser.resx">
+      <DependentUpon>KomunitasUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
@@ -228,8 +264,8 @@
     <EmbeddedResource Include="SignUp.resx">
       <DependentUpon>SignUp.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Transaction.resx">
-      <DependentUpon>Transaction.cs</DependentUpon>
+    <EmbeddedResource Include="DataAktivitasKomunitas.resx">
+      <DependentUpon>DataAktivitasKomunitas.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="AktivitasDataSet.xsc">
       <DependentUpon>AktivitasDataSet.xsd</DependentUpon>
