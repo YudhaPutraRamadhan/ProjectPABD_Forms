@@ -31,17 +31,21 @@ namespace ProjectPABD_Forms
 
                 string Query = @"
                 SELECT
-                    AktivitasKomunitas.IdAktivitas,
-                    AktivitasKomunitas.JenisAktivitas,
-                    AktivitasKomunitas.StatusAktivitas,
-                    Event.IdEvents,
-                    Event.NamaEvents,
-                    Event.TanggalEvent,
-                    Event.Lokasi
-                FROM
-                    AktivitasKomunitas
-                INNER JOIN
-                    Event ON AktivitasKomunitas.IdAktivitas = Event.IdAktivitas";
+                        AK.IdAktivitas,
+                        AK.JenisAktivitas,
+                        AK.StatusAktivitas,
+                        E.IdEvents,
+                        E.NamaEvents,
+                        E.TanggalEvent,
+                        E.Lokasi,
+                        K.IdKomunitas,        
+                        K.NamaKomunitas       
+                    FROM
+                        AktivitasKomunitas AS AK
+                    INNER JOIN
+                        Event AS E ON AK.IdAktivitas = E.IdAktivitas
+                    INNER JOIN
+                        Komunitas AS K ON AK.IdKomunitas = K.IdKomunitas; -- Join dengan tabel Komunitas";
 
                 SqlDataAdapter dataAdapter = new SqlDataAdapter(Query, conn);
                 DataTable dataTable = new DataTable();
@@ -53,6 +57,7 @@ namespace ProjectPABD_Forms
 
                     dgvAktivitasUser.Columns["IdAktivitas"].Visible = false;
                     dgvAktivitasUser.Columns["IdEvents"].Visible = false;
+                    dgvAktivitasUser.Columns["IdKomunitas"].Visible = false;
                 }
                 catch (Exception ex)
                 {

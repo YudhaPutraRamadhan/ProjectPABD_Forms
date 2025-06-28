@@ -41,13 +41,6 @@ namespace ProjectPABD_Forms
             transaction.Show();
         }
 
-        private void pnlAdminKomunitas_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            KelolaAdminKomun kelolaAdminKomun = new KelolaAdminKomun();
-            kelolaAdminKomun.Show();
-        }
-
         private void pnlPengguna_Click(object sender, EventArgs e)
         {
             this.Hide();

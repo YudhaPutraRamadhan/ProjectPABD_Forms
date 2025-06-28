@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace ProjectPABD_Forms
 {
-    public partial class KomunitasUser: Form
+    public partial class KomunitasUser : Form
     {
 
         private string connectionString = "Data Source=PAVILIONGAME\\YUDHA_PUTRA_RAMA;Initial Catalog=Management_Komunitas;Integrated Security=True";
@@ -32,7 +32,19 @@ namespace ProjectPABD_Forms
                 try
                 {
                     conn.Open();
-                    string query = "SELECT IdKomunitas AS [ID], NamaKomunitas, AdminKomunitas, Deskripsi, NomorTeleponKomunitas, Kategori, AlamatKomunitas, EmailKomunitas, JumlahAnggota FROM Komunitas";
+                    string query = @"
+                        SELECT 
+                            K.IdKomunitas AS [ID], 
+                            K.NamaKomunitas, 
+                            K.AdminKomunitas, 
+                            K.Deskripsi, 
+                            K.NomorTeleponKomunitas, 
+                            TK.NamaKategori AS Kategori, -- Mengambil NamaKategori dari tabel KategoriKomunitas
+                            K.AlamatKomunitas, 
+                            K.EmailKomunitas, 
+                            K.JumlahAnggota
+                        FROM Komunitas AS K
+                        INNER JOIN KategoriKomunitas AS TK ON K.IdKategori = TK.IdKategori";
                     SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);
