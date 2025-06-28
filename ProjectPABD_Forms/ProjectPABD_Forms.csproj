@@ -159,12 +159,6 @@
     <Compile Include="FormAktivitas.Designer.cs">
       <DependentUpon>FormAktivitas.cs</DependentUpon>
     </Compile>
-    <Compile Include="KelolaAdminKomun.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="KelolaAdminKomun.Designer.cs">
-      <DependentUpon>KelolaAdminKomun.cs</DependentUpon>
-    </Compile>
     <Compile Include="KelolaUser.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -236,9 +230,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAktivitas.resx">
       <DependentUpon>FormAktivitas.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="KelolaAdminKomun.resx">
-      <DependentUpon>KelolaAdminKomun.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KelolaUser.resx">
       <DependentUpon>KelolaUser.cs</DependentUpon>
