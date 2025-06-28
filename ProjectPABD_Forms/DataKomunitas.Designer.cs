@@ -36,7 +36,6 @@
             this.textEmail = new System.Windows.Forms.TextBox();
             this.textAlamat = new System.Windows.Forms.TextBox();
             this.btnRefresh = new System.Windows.Forms.Button();
-            this.textKategori = new System.Windows.Forms.TextBox();
             this.textTelepon = new System.Windows.Forms.TextBox();
             this.textDeskripsi = new System.Windows.Forms.TextBox();
             this.textAdmin = new System.Windows.Forms.TextBox();
@@ -74,6 +73,7 @@
             this.btnHapus = new System.Windows.Forms.Button();
             this.komunitasTableAdapter = new ProjectPABD_Forms.Management_KomunitasDataSetTableAdapters.KomunitasTableAdapter();
             this.btnKembali = new System.Windows.Forms.Button();
+            this.cmbKategori = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgwKomun)).BeginInit();
@@ -95,11 +95,11 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.Window;
+            this.panel1.Controls.Add(this.cmbKategori);
             this.panel1.Controls.Add(this.textJumlah);
             this.panel1.Controls.Add(this.textEmail);
             this.panel1.Controls.Add(this.textAlamat);
             this.panel1.Controls.Add(this.btnRefresh);
-            this.panel1.Controls.Add(this.textKategori);
             this.panel1.Controls.Add(this.textTelepon);
             this.panel1.Controls.Add(this.textDeskripsi);
             this.panel1.Controls.Add(this.textAdmin);
@@ -163,16 +163,6 @@
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.UseVisualStyleBackColor = false;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-            // 
-            // textKategori
-            // 
-            this.textKategori.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.textKategori.Location = new System.Drawing.Point(166, 323);
-            this.textKategori.Name = "textKategori";
-            this.textKategori.Size = new System.Drawing.Size(453, 23);
-            this.textKategori.TabIndex = 15;
-            this.textKategori.TextChanged += new System.EventHandler(this.textKategori_TextChanged);
-            this.textKategori.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textKategori_KeyPress);
             // 
             // textTelepon
             // 
@@ -545,7 +535,15 @@
             this.btnKembali.UseVisualStyleBackColor = false;
             this.btnKembali.Click += new System.EventHandler(this.btnKembali_Click);
             // 
-            // CRUD_Komun
+            // cmbKategori
+            // 
+            this.cmbKategori.FormattingEnabled = true;
+            this.cmbKategori.Location = new System.Drawing.Point(166, 326);
+            this.cmbKategori.Name = "cmbKategori";
+            this.cmbKategori.Size = new System.Drawing.Size(453, 24);
+            this.cmbKategori.TabIndex = 19;
+            // 
+            // DataKomunitas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -557,7 +555,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "CRUD_Komun";
+            this.Name = "DataKomunitas";
             this.Text = "HobbyYK";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
@@ -596,7 +594,6 @@
         private System.Windows.Forms.TextBox textJumlah;
         private System.Windows.Forms.TextBox textEmail;
         private System.Windows.Forms.TextBox textAlamat;
-        private System.Windows.Forms.TextBox textKategori;
         private System.Windows.Forms.DataGridView dgwKomun;
         private Management_KomunitasDataSet management_KomunitasDataSet;
         private System.Windows.Forms.BindingSource komunitasBindingSource;
@@ -618,6 +615,7 @@
         private System.Windows.Forms.Button btnAnalyze;
         private System.Windows.Forms.Button btnTransaction;
         private System.Windows.Forms.Button btnKembali;
+        private System.Windows.Forms.ComboBox cmbKategori;
     }
 }
 

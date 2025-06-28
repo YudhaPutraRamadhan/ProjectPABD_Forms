@@ -58,6 +58,8 @@
             this.btnRefresh = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
             this.btnLaporan = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.cmbKomunitas = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -203,6 +205,8 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel3.Controls.Add(this.cmbKomunitas);
+            this.panel3.Controls.Add(this.label11);
             this.panel3.Controls.Add(this.comboxStatus);
             this.panel3.Controls.Add(this.label10);
             this.panel3.Controls.Add(this.comboxJenis);
@@ -388,7 +392,29 @@
             this.btnLaporan.UseVisualStyleBackColor = true;
             this.btnLaporan.Click += new System.EventHandler(this.btnLaporan_Click);
             // 
-            // Transaction
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(498, 124);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(135, 18);
+            this.label11.TabIndex = 14;
+            this.label11.Text = "Pilih Komunitas :";
+            // 
+            // cmbKomunitas
+            // 
+            this.cmbKomunitas.FormattingEnabled = true;
+            this.cmbKomunitas.Items.AddRange(new object[] {
+            "Sedang Berlangsung",
+            "Selesai",
+            "Dibatalkan"});
+            this.cmbKomunitas.Location = new System.Drawing.Point(661, 123);
+            this.cmbKomunitas.Name = "cmbKomunitas";
+            this.cmbKomunitas.Size = new System.Drawing.Size(298, 24);
+            this.cmbKomunitas.TabIndex = 15;
+            // 
+            // DataAktivitasKomunitas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -406,7 +432,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Transaction";
+            this.Name = "DataAktivitasKomunitas";
             this.Text = "HobbyYK";
             this.Load += new System.EventHandler(this.Transaction_Load);
             this.panel1.ResumeLayout(false);
@@ -452,5 +478,7 @@
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Button btnLaporan;
         private System.Windows.Forms.Button btnKembali;
+        private System.Windows.Forms.ComboBox cmbKomunitas;
+        private System.Windows.Forms.Label label11;
     }
 }
