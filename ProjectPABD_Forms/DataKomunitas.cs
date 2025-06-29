@@ -35,7 +35,7 @@ namespace ProjectPABD_Forms
         private void Form1_Load(object sender, EventArgs e)
         {
             EnsureIndexes();
-            LoadKategori(); // Panggil metode LoadKategori di sini
+            LoadKategori();
             LoadData();
         }
 
@@ -64,10 +64,9 @@ namespace ProjectPABD_Forms
             textAdmin.Clear();
             textDeskripsi.Clear();
             textTelepon.Clear();
-            // cmbKategori.SelectedIndex = -1; // Ini bisa dilakukan, tapi lebih baik set ke default pilihan "-- Pilih Kategori --"
             if (cmbKategori.Items.Count > 0)
             {
-                cmbKategori.SelectedIndex = 0; // Pilih opsi default "-- Pilih Kategori --"
+                cmbKategori.SelectedIndex = 0;
             }
             textAlamat.Clear();
             textEmail.Clear();
@@ -90,7 +89,6 @@ namespace ProjectPABD_Forms
                 using (var conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    // Mengubah query untuk JOIN dengan KategoriKomunitas dan mengambil NamaKategori
                     var query = @"
                         SELECT 
                             K.IdKomunitas AS [ID], 
@@ -98,13 +96,15 @@ namespace ProjectPABD_Forms
                             K.AdminKomunitas, 
                             K.Deskripsi, 
                             K.NomorTeleponKomunitas, 
-                            TK.NamaKategori AS Kategori, -- Mengambil NamaKategori dari tabel KategoriKomunitas
+                            TK.NamaKategori AS Kategori,
                             K.AlamatKomunitas, 
                             K.EmailKomunitas, 
                             K.JumlahAnggota,
-                            K.IdKategori -- Sertakan IdKategori untuk digunakan saat memilih di DataGridView
-                        FROM Komunitas AS K
-                        INNER JOIN KategoriKomunitas AS TK ON K.IdKategori = TK.IdKategori";
+                            K.IdKategori
+                        FROM 
+                            Komunitas AS K
+                        INNER JOIN 
+                            KategoriKomunitas AS TK ON K.IdKategori = TK.IdKategori";
                     var da = new SqlDataAdapter(query, conn);
                     da.Fill(dt);
                 }
@@ -114,31 +114,28 @@ namespace ProjectPABD_Forms
             dgwKomun.AutoGenerateColumns = true;
             dgwKomun.DataSource = dt;
 
-            // Sembunyikan kolom IdKategori di DataGridView jika tidak ingin ditampilkan
             if (dgwKomun.Columns.Contains("IdKategori"))
             {
                 dgwKomun.Columns["IdKategori"].Visible = false;
             }
         }
 
-        private void LoadKategori() // Metode untuk memuat kategori dari tabel KategoriKomunitas
+        private void LoadKategori()
         {
             try
             {
-                // Mengambil IdKategori dan NamaKategori dari tabel KategoriKomunitas
                 string query = "SELECT IdKategori, NamaKategori FROM KategoriKomunitas ORDER BY NamaKategori";
                 DataTable dataTable = DatabaseConnection.ExecuteQuery(query);
 
-                // Menambahkan opsi default "-- Pilih Kategori --"
                 DataRow newRow = dataTable.NewRow();
-                newRow["IdKategori"] = DBNull.Value; // Penting agar bisa dipilih sebagai "tidak ada pilihan"
+                newRow["IdKategori"] = DBNull.Value;
                 newRow["NamaKategori"] = "-- Pilih Kategori --";
                 dataTable.Rows.InsertAt(newRow, 0);
 
                 cmbKategori.DataSource = dataTable;
-                cmbKategori.DisplayMember = "NamaKategori"; // Tampilkan NamaKategori
-                cmbKategori.ValueMember = "IdKategori";   // Gunakan IdKategori sebagai nilai
-                cmbKategori.SelectedIndex = 0; // Pilih opsi default
+                cmbKategori.DisplayMember = "NamaKategori";
+                cmbKategori.ValueMember = "IdKategori";
+                cmbKategori.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
@@ -212,7 +209,6 @@ namespace ProjectPABD_Forms
                 MessageBox.Show("Harap isi semua data!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            // Validasi untuk cmbKategori (pastikan bukan opsi default "-- Pilih Kategori --" atau null)
             if (cmbKategori.SelectedValue == DBNull.Value || cmbKategori.SelectedValue == null)
             {
                 MessageBox.Show("Harap pilih kategori!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -233,7 +229,7 @@ namespace ProjectPABD_Forms
                         cmd.Parameters.AddWithValue("@AdminKomunitas", textAdmin.Text);
                         cmd.Parameters.AddWithValue("@Deskripsi", textDeskripsi.Text);
                         cmd.Parameters.AddWithValue("@NomorTeleponKomunitas", textTelepon.Text);
-                        cmd.Parameters.AddWithValue("@IdKategori", (int)cmbKategori.SelectedValue); // Mengirim IdKategori
+                        cmd.Parameters.AddWithValue("@IdKategori", (int)cmbKategori.SelectedValue);
                         cmd.Parameters.AddWithValue("@AlamatKomunitas", textAlamat.Text);
                         cmd.Parameters.AddWithValue("@EmailKomunitas", textEmail.Text);
                         cmd.Parameters.AddWithValue("@JumlahAnggota", textJumlah.Text);
@@ -258,7 +254,6 @@ namespace ProjectPABD_Forms
                 MessageBox.Show("Pilih data yang akan diubah!", "Peringatan");
                 return;
             }
-            // Validasi untuk cmbKategori
             if (cmbKategori.SelectedValue == DBNull.Value || cmbKategori.SelectedValue == null)
             {
                 MessageBox.Show("Harap pilih kategori!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -278,7 +273,7 @@ namespace ProjectPABD_Forms
                         cmd.Parameters.AddWithValue("@AdminKomunitas", textAdmin.Text.Trim());
                         cmd.Parameters.AddWithValue("@Deskripsi", textDeskripsi.Text.Trim());
                         cmd.Parameters.AddWithValue("@NomorTeleponKomunitas", textTelepon.Text.Trim());
-                        cmd.Parameters.AddWithValue("@IdKategori", (int)cmbKategori.SelectedValue); // Mengirim IdKategori
+                        cmd.Parameters.AddWithValue("@IdKategori", (int)cmbKategori.SelectedValue);
                         cmd.Parameters.AddWithValue("@AlamatKomunitas", textAlamat.Text.Trim());
                         cmd.Parameters.AddWithValue("@EmailKomunitas", textEmail.Text.Trim());
                         cmd.Parameters.AddWithValue("@JumlahAnggota", textJumlah.Text.Trim());
@@ -329,7 +324,7 @@ namespace ProjectPABD_Forms
         {
             _cache.Remove(CacheKey);
             LoadData();
-            LoadKategori(); // Refresh kategori juga saat refresh data
+            LoadKategori();
             ClearForm();
         }
 
@@ -381,11 +376,10 @@ namespace ProjectPABD_Forms
         {
             string email = textEmail.Text.Trim();
 
-            // Jika email tidak kosong dan tidak mengandung '@'
             if (!string.IsNullOrEmpty(email) && !email.Contains('@'))
             {
                 MessageBox.Show("Format email salah", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                textEmail.Focus(); // Kembalikan fokus ke field email
+                textEmail.Focus();
             }
         }
 
@@ -457,29 +451,38 @@ namespace ProjectPABD_Forms
 
         private void dgwKomun_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0) return;
-            var row = dgwKomun.Rows[e.RowIndex];
-            textID.Text = row.Cells["ID"].Value?.ToString() ?? string.Empty;
-            textNama.Text = row.Cells["NamaKomunitas"].Value?.ToString() ?? string.Empty;
-            textAdmin.Text = row.Cells["AdminKomunitas"].Value?.ToString() ?? string.Empty;
-            textDeskripsi.Text = row.Cells["Deskripsi"].Value?.ToString() ?? string.Empty;
-            textTelepon.Text = row.Cells["NomorTeleponKomunitas"].Value?.ToString() ?? string.Empty;
-
-            // Mengatur pilihan di ComboBox berdasarkan IdKategori yang diambil dari DataGridView
-            object idKategoriValue = row.Cells["IdKategori"].Value;
-            if (idKategoriValue != null && idKategoriValue != DBNull.Value)
+            if (e.RowIndex >= 0 && dgwKomun.Rows.Count > 0)
             {
-                cmbKategori.SelectedValue = idKategoriValue;
-            }
-            else
-            {
-                // Jika IdKategori null, set ke pilihan default atau kosongkan
-                cmbKategori.SelectedIndex = 0;
-            }
+                try
+                {
+                    var row = dgwKomun.Rows[e.RowIndex];
 
-            textAlamat.Text = row.Cells["AlamatKomunitas"].Value?.ToString() ?? string.Empty;
-            textEmail.Text = row.Cells["EmailKomunitas"].Value?.ToString() ?? string.Empty;
-            textJumlah.Text = row.Cells["JumlahAnggota"].Value?.ToString() ?? string.Empty;
+                    textID.Text = row.Cells[0].Value?.ToString() ?? string.Empty;
+                    textNama.Text = row.Cells[1].Value?.ToString() ?? string.Empty;
+                    textAdmin.Text = row.Cells[2].Value?.ToString() ?? string.Empty;
+                    textDeskripsi.Text = row.Cells[3].Value?.ToString() ?? string.Empty;
+                    textTelepon.Text = row.Cells[4].Value?.ToString() ?? string.Empty;
+
+                    object idKategoriValue = row.Cells["IdKategori"].Value;
+                    if (idKategoriValue != null && idKategoriValue != DBNull.Value)
+                    {
+                        cmbKategori.SelectedValue = idKategoriValue;
+                    }
+                    else
+                    {
+                        // Jika IdKategori null, set ke pilihan default atau kosongkan
+                        cmbKategori.SelectedIndex = 0;
+                    }
+
+                    textAlamat.Text = row.Cells[5].Value?.ToString() ?? string.Empty;
+                    textEmail.Text = row.Cells[6].Value?.ToString() ?? string.Empty;
+                    textJumlah.Text = row.Cells[7].Value?.ToString() ?? string.Empty;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Kesalahan", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void textID_KeyPress(object sender, KeyPressEventArgs e)
