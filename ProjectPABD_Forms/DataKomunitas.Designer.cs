@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataKomunitas));
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cmbKategori = new System.Windows.Forms.ComboBox();
             this.textJumlah = new System.Windows.Forms.TextBox();
             this.textEmail = new System.Windows.Forms.TextBox();
             this.textAlamat = new System.Windows.Forms.TextBox();
@@ -52,6 +53,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnGrafik = new System.Windows.Forms.Button();
             this.btnAnalyze = new System.Windows.Forms.Button();
             this.btnImport = new System.Windows.Forms.Button();
             this.dgwKomun = new System.Windows.Forms.DataGridView();
@@ -73,7 +75,6 @@
             this.btnHapus = new System.Windows.Forms.Button();
             this.komunitasTableAdapter = new ProjectPABD_Forms.Management_KomunitasDataSetTableAdapters.KomunitasTableAdapter();
             this.btnKembali = new System.Windows.Forms.Button();
-            this.cmbKategori = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgwKomun)).BeginInit();
@@ -119,6 +120,14 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(656, 546);
             this.panel1.TabIndex = 1;
+            // 
+            // cmbKategori
+            // 
+            this.cmbKategori.FormattingEnabled = true;
+            this.cmbKategori.Location = new System.Drawing.Point(166, 326);
+            this.cmbKategori.Name = "cmbKategori";
+            this.cmbKategori.Size = new System.Drawing.Size(453, 24);
+            this.cmbKategori.TabIndex = 19;
             // 
             // textJumlah
             // 
@@ -315,6 +324,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.Window;
+            this.panel2.Controls.Add(this.btnGrafik);
             this.panel2.Controls.Add(this.btnAnalyze);
             this.panel2.Controls.Add(this.btnImport);
             this.panel2.Controls.Add(this.dgwKomun);
@@ -322,6 +332,19 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(556, 659);
             this.panel2.TabIndex = 2;
+            // 
+            // btnGrafik
+            // 
+            this.btnGrafik.BackColor = System.Drawing.Color.White;
+            this.btnGrafik.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btnGrafik.ForeColor = System.Drawing.Color.Black;
+            this.btnGrafik.Location = new System.Drawing.Point(159, 583);
+            this.btnGrafik.Name = "btnGrafik";
+            this.btnGrafik.Size = new System.Drawing.Size(134, 38);
+            this.btnGrafik.TabIndex = 10;
+            this.btnGrafik.Text = "Lihat Grafik";
+            this.btnGrafik.UseVisualStyleBackColor = false;
+            this.btnGrafik.Click += new System.EventHandler(this.btnGrafik_Click);
             // 
             // btnAnalyze
             // 
@@ -535,14 +558,6 @@
             this.btnKembali.UseVisualStyleBackColor = false;
             this.btnKembali.Click += new System.EventHandler(this.btnKembali_Click);
             // 
-            // cmbKategori
-            // 
-            this.cmbKategori.FormattingEnabled = true;
-            this.cmbKategori.Location = new System.Drawing.Point(166, 326);
-            this.cmbKategori.Name = "cmbKategori";
-            this.cmbKategori.Size = new System.Drawing.Size(453, 24);
-            this.cmbKategori.TabIndex = 19;
-            // 
             // DataKomunitas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -616,6 +631,7 @@
         private System.Windows.Forms.Button btnTransaction;
         private System.Windows.Forms.Button btnKembali;
         private System.Windows.Forms.ComboBox cmbKategori;
+        private System.Windows.Forms.Button btnGrafik;
     }
 }
 

@@ -106,6 +106,7 @@
     <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.4.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -158,6 +159,12 @@
     </Compile>
     <Compile Include="FormAktivitas.Designer.cs">
       <DependentUpon>FormAktivitas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormKategoriKomun.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormKategoriKomun.Designer.cs">
+      <DependentUpon>FormKategoriKomun.cs</DependentUpon>
     </Compile>
     <Compile Include="KelolaUser.cs">
       <SubType>Form</SubType>
@@ -212,6 +219,12 @@
     <Compile Include="DataAktivitasKomunitas.Designer.cs">
       <DependentUpon>DataAktivitasKomunitas.cs</DependentUpon>
     </Compile>
+    <Compile Include="StartScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StartScreen.Designer.cs">
+      <DependentUpon>StartScreen.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AktivitasKomunUser.resx">
       <DependentUpon>AktivitasKomunUser.cs</DependentUpon>
     </EmbeddedResource>
@@ -230,6 +243,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAktivitas.resx">
       <DependentUpon>FormAktivitas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormKategoriKomun.resx">
+      <DependentUpon>FormKategoriKomun.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KelolaUser.resx">
       <DependentUpon>KelolaUser.cs</DependentUpon>
@@ -257,6 +273,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DataAktivitasKomunitas.resx">
       <DependentUpon>DataAktivitasKomunitas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StartScreen.resx">
+      <DependentUpon>StartScreen.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="AktivitasDataSet.xsc">
       <DependentUpon>AktivitasDataSet.xsd</DependentUpon>

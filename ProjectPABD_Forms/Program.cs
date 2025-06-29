@@ -16,7 +16,11 @@ namespace ProjectPABD_Forms
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoginForm());
+            StartScreen startScreen = new StartScreen();
+            if (startScreen.ShowDialog() == DialogResult.OK)
+            {
+                Application.Run(new LoginForm());
+            }
         }
     }
 }

@@ -525,5 +525,12 @@ namespace ProjectPABD_Forms
             }
             this.Hide();
         }
+
+        private void btnGrafik_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            FormKategoriKomun formKategoriKomun = new FormKategoriKomun();
+            formKategoriKomun.Show();
+        }
     }
 }

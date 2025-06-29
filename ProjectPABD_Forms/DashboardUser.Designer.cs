@@ -35,6 +35,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.pnlAktivitas = new System.Windows.Forms.Panel();
             this.pnlKomunitas = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.pnlGrafik = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // btnLogOut
@@ -55,7 +57,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Helvetica Neue", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(237, 65);
+            this.label1.Location = new System.Drawing.Point(237, 21);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(509, 53);
             this.label1.TabIndex = 8;
@@ -66,7 +68,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Helvetica Neue", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(564, 472);
+            this.label3.Location = new System.Drawing.Point(515, 585);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(301, 28);
             this.label3.TabIndex = 12;
@@ -75,44 +77,69 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Helvetica Neue", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Font = new System.Drawing.Font("Helvetica Neue", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(94, 472);
+            this.label2.Location = new System.Drawing.Point(137, 585);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(245, 34);
+            this.label2.Size = new System.Drawing.Size(203, 28);
             this.label2.TabIndex = 11;
             this.label2.Text = "Data Komunitas";
             // 
             // pnlAktivitas
             // 
-            this.pnlAktivitas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.pnlAktivitas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.pnlAktivitas.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnlAktivitas.BackgroundImage")));
             this.pnlAktivitas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pnlAktivitas.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pnlAktivitas.Location = new System.Drawing.Point(554, 160);
+            this.pnlAktivitas.Location = new System.Drawing.Point(560, 370);
             this.pnlAktivitas.Name = "pnlAktivitas";
-            this.pnlAktivitas.Size = new System.Drawing.Size(324, 286);
+            this.pnlAktivitas.Size = new System.Drawing.Size(206, 189);
             this.pnlAktivitas.TabIndex = 10;
             this.pnlAktivitas.Click += new System.EventHandler(this.pnlAktivitas_Click);
             // 
             // pnlKomunitas
             // 
-            this.pnlKomunitas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.pnlKomunitas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.pnlKomunitas.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnlKomunitas.BackgroundImage")));
             this.pnlKomunitas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pnlKomunitas.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pnlKomunitas.Location = new System.Drawing.Point(54, 159);
+            this.pnlKomunitas.Location = new System.Drawing.Point(135, 370);
             this.pnlKomunitas.Name = "pnlKomunitas";
-            this.pnlKomunitas.Size = new System.Drawing.Size(324, 286);
+            this.pnlKomunitas.Size = new System.Drawing.Size(204, 189);
             this.pnlKomunitas.TabIndex = 9;
             this.pnlKomunitas.Click += new System.EventHandler(this.pnlKomunitas_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Helvetica Neue", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(311, 322);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(327, 28);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "Grafik Kategori Komunitas";
+            // 
+            // pnlGrafik
+            // 
+            this.pnlGrafik.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.pnlGrafik.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnlGrafik.BackgroundImage")));
+            this.pnlGrafik.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pnlGrafik.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlGrafik.Location = new System.Drawing.Point(365, 103);
+            this.pnlGrafik.Name = "pnlGrafik";
+            this.pnlGrafik.Size = new System.Drawing.Size(206, 189);
+            this.pnlGrafik.TabIndex = 13;
+            this.pnlGrafik.Click += new System.EventHandler(this.pnlGrafik_Click);
             // 
             // DashboardUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Teal;
-            this.ClientSize = new System.Drawing.Size(947, 553);
+            this.ClientSize = new System.Drawing.Size(947, 660);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.pnlGrafik);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.pnlAktivitas);
@@ -135,5 +162,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel pnlAktivitas;
         private System.Windows.Forms.Panel pnlKomunitas;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Panel pnlGrafik;
     }
 }

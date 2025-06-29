@@ -40,5 +40,12 @@ namespace ProjectPABD_Forms
         {
             LoginForm.Logout();
         }
+
+        private void pnlGrafik_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            FormKategoriKomun formKategori = new FormKategoriKomun();
+            formKategori.Show();
+        }
     }
 }
