@@ -9,12 +9,13 @@
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTable1TableAdapter" GeneratorDataComponentClassName="DataTable1TableAdapter" Name="DataTable1" UserDataComponentName="DataTable1TableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="Management_KomunitasConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="Management_KomunitasConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT a.IdAktivitas, a.JenisAktivitas, a.StatusAktivitas, e.IdEvents, e.NamaEvents, e.TanggalEvent, e.Lokasi
+                    <CommandText>SELECT a.IdAktivitas, a.JenisAktivitas, a.StatusAktivitas, e.IdEvents, e.NamaEvents, e.TanggalEvent, e.Lokasi, k.NamaKomunitas
 FROM     AktivitasKomunitas AS a INNER JOIN
-                  Event AS e ON a.IdAktivitas = e.IdAktivitas</CommandText>
+                  Event AS e ON a.IdAktivitas = e.IdAktivitas INNER JOIN
+                  Komunitas AS k ON a.IdKomunitas = k.IdKomunitas</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -28,6 +29,7 @@ FROM     AktivitasKomunitas AS a INNER JOIN
               <Mapping SourceColumn="NamaEvents" DataSetColumn="NamaEvents" />
               <Mapping SourceColumn="TanggalEvent" DataSetColumn="TanggalEvent" />
               <Mapping SourceColumn="Lokasi" DataSetColumn="Lokasi" />
+              <Mapping SourceColumn="NamaKomunitas" DataSetColumn="NamaKomunitas" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -36,49 +38,56 @@ FROM     AktivitasKomunitas AS a INNER JOIN
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="AktivitasDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="AktivitasDataSet" msprop:Generator_DataSetName="AktivitasDataSet">
+  <xs:element name="AktivitasDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="AktivitasDataSet" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="AktivitasDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="DataTable1" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_RowClassName="DataTable1Row" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_UserTableName="DataTable1">
+        <xs:element name="DataTable1" msprop:Generator_RowClassName="DataTable1Row" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="IdAktivitas" msprop:Generator_ColumnPropNameInRow="IdAktivitas" msprop:Generator_ColumnPropNameInTable="IdAktivitasColumn" msprop:Generator_ColumnVarNameInTable="columnIdAktivitas" msprop:Generator_UserColumnName="IdAktivitas">
+              <xs:element name="IdAktivitas" msprop:Generator_UserColumnName="IdAktivitas" msprop:Generator_ColumnPropNameInTable="IdAktivitasColumn" msprop:Generator_ColumnPropNameInRow="IdAktivitas" msprop:Generator_ColumnVarNameInTable="columnIdAktivitas">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="3" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="JenisAktivitas" msprop:Generator_ColumnPropNameInRow="JenisAktivitas" msprop:Generator_ColumnPropNameInTable="JenisAktivitasColumn" msprop:Generator_ColumnVarNameInTable="columnJenisAktivitas" msprop:Generator_UserColumnName="JenisAktivitas" minOccurs="0">
+              <xs:element name="JenisAktivitas" msprop:Generator_UserColumnName="JenisAktivitas" msprop:Generator_ColumnPropNameInTable="JenisAktivitasColumn" msprop:Generator_ColumnPropNameInRow="JenisAktivitas" msprop:Generator_ColumnVarNameInTable="columnJenisAktivitas" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="StatusAktivitas" msprop:Generator_ColumnPropNameInRow="StatusAktivitas" msprop:Generator_ColumnPropNameInTable="StatusAktivitasColumn" msprop:Generator_ColumnVarNameInTable="columnStatusAktivitas" msprop:Generator_UserColumnName="StatusAktivitas" minOccurs="0">
+              <xs:element name="StatusAktivitas" msprop:Generator_UserColumnName="StatusAktivitas" msprop:Generator_ColumnPropNameInTable="StatusAktivitasColumn" msprop:Generator_ColumnPropNameInRow="StatusAktivitas" msprop:Generator_ColumnVarNameInTable="columnStatusAktivitas" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="IdEvents" msprop:Generator_ColumnPropNameInRow="IdEvents" msprop:Generator_ColumnPropNameInTable="IdEventsColumn" msprop:Generator_ColumnVarNameInTable="columnIdEvents" msprop:Generator_UserColumnName="IdEvents">
+              <xs:element name="IdEvents" msprop:Generator_UserColumnName="IdEvents" msprop:Generator_ColumnPropNameInTable="IdEventsColumn" msprop:Generator_ColumnPropNameInRow="IdEvents" msprop:Generator_ColumnVarNameInTable="columnIdEvents">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="3" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="NamaEvents" msprop:Generator_ColumnPropNameInRow="NamaEvents" msprop:Generator_ColumnPropNameInTable="NamaEventsColumn" msprop:Generator_ColumnVarNameInTable="columnNamaEvents" msprop:Generator_UserColumnName="NamaEvents">
+              <xs:element name="NamaEvents" msprop:Generator_UserColumnName="NamaEvents" msprop:Generator_ColumnPropNameInTable="NamaEventsColumn" msprop:Generator_ColumnPropNameInRow="NamaEvents" msprop:Generator_ColumnVarNameInTable="columnNamaEvents">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="150" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="TanggalEvent" msprop:Generator_ColumnPropNameInRow="TanggalEvent" msprop:Generator_ColumnPropNameInTable="TanggalEventColumn" msprop:Generator_ColumnVarNameInTable="columnTanggalEvent" msprop:Generator_UserColumnName="TanggalEvent" type="xs:dateTime" />
-              <xs:element name="Lokasi" msprop:Generator_ColumnPropNameInRow="Lokasi" msprop:Generator_ColumnPropNameInTable="LokasiColumn" msprop:Generator_ColumnVarNameInTable="columnLokasi" msprop:Generator_UserColumnName="Lokasi">
+              <xs:element name="TanggalEvent" msprop:Generator_UserColumnName="TanggalEvent" msprop:Generator_ColumnPropNameInTable="TanggalEventColumn" msprop:Generator_ColumnPropNameInRow="TanggalEvent" msprop:Generator_ColumnVarNameInTable="columnTanggalEvent" type="xs:dateTime" />
+              <xs:element name="Lokasi" msprop:Generator_UserColumnName="Lokasi" msprop:Generator_ColumnPropNameInTable="LokasiColumn" msprop:Generator_ColumnPropNameInRow="Lokasi" msprop:Generator_ColumnVarNameInTable="columnLokasi">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NamaKomunitas" msprop:Generator_ColumnPropNameInRow="NamaKomunitas" msprop:Generator_ColumnPropNameInTable="NamaKomunitasColumn" msprop:Generator_ColumnVarNameInTable="columnNamaKomunitas" msprop:Generator_UserColumnName="NamaKomunitas">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="150" />

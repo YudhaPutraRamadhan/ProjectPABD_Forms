@@ -293,6 +293,8 @@ namespace ProjectPABD_Forms {
             
             private global::System.Data.DataColumn columnLokasi;
             
+            private global::System.Data.DataColumn columnNamaKomunitas;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public DataTable1DataTable() {
@@ -384,6 +386,14 @@ namespace ProjectPABD_Forms {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn NamaKomunitasColumn {
+                get {
+                    return this.columnNamaKomunitas;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -419,7 +429,7 @@ namespace ProjectPABD_Forms {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public DataTable1Row AddDataTable1Row(string IdAktivitas, string JenisAktivitas, string StatusAktivitas, string IdEvents, string NamaEvents, System.DateTime TanggalEvent, string Lokasi) {
+            public DataTable1Row AddDataTable1Row(string IdAktivitas, string JenisAktivitas, string StatusAktivitas, string IdEvents, string NamaEvents, System.DateTime TanggalEvent, string Lokasi, string NamaKomunitas) {
                 DataTable1Row rowDataTable1Row = ((DataTable1Row)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         IdAktivitas,
@@ -428,7 +438,8 @@ namespace ProjectPABD_Forms {
                         IdEvents,
                         NamaEvents,
                         TanggalEvent,
-                        Lokasi};
+                        Lokasi,
+                        NamaKomunitas};
                 rowDataTable1Row.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDataTable1Row);
                 return rowDataTable1Row;
@@ -466,6 +477,7 @@ namespace ProjectPABD_Forms {
                 this.columnNamaEvents = base.Columns["NamaEvents"];
                 this.columnTanggalEvent = base.Columns["TanggalEvent"];
                 this.columnLokasi = base.Columns["Lokasi"];
+                this.columnNamaKomunitas = base.Columns["NamaKomunitas"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -485,6 +497,8 @@ namespace ProjectPABD_Forms {
                 base.Columns.Add(this.columnTanggalEvent);
                 this.columnLokasi = new global::System.Data.DataColumn("Lokasi", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnLokasi);
+                this.columnNamaKomunitas = new global::System.Data.DataColumn("NamaKomunitas", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNamaKomunitas);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnIdAktivitas,
                                 this.columnIdEvents}, true));
@@ -499,6 +513,8 @@ namespace ProjectPABD_Forms {
                 this.columnTanggalEvent.AllowDBNull = false;
                 this.columnLokasi.AllowDBNull = false;
                 this.columnLokasi.MaxLength = 150;
+                this.columnNamaKomunitas.AllowDBNull = false;
+                this.columnNamaKomunitas.MaxLength = 150;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -728,6 +744,17 @@ namespace ProjectPABD_Forms {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string NamaKomunitas {
+                get {
+                    return ((string)(this[this.tableDataTable1.NamaKomunitasColumn]));
+                }
+                set {
+                    this[this.tableDataTable1.NamaKomunitasColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsJenisAktivitasNull() {
                 return this.IsNull(this.tableDataTable1.JenisAktivitasColumn);
             }
@@ -917,6 +944,7 @@ namespace ProjectPABD_Forms.AktivitasDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("NamaEvents", "NamaEvents");
             tableMapping.ColumnMappings.Add("TanggalEvent", "TanggalEvent");
             tableMapping.ColumnMappings.Add("Lokasi", "Lokasi");
+            tableMapping.ColumnMappings.Add("NamaKomunitas", "NamaKomunitas");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -933,9 +961,10 @@ namespace ProjectPABD_Forms.AktivitasDataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT a.IdAktivitas, a.JenisAktivitas, a.StatusAktivitas, e.IdEvents, e.NamaEven" +
-                "ts, e.TanggalEvent, e.Lokasi\r\nFROM     AktivitasKomunitas AS a INNER JOIN\r\n     " +
-                "             Event AS e ON a.IdAktivitas = e.IdAktivitas";
+            this._commandCollection[0].CommandText = @"SELECT a.IdAktivitas, a.JenisAktivitas, a.StatusAktivitas, e.IdEvents, e.NamaEvents, e.TanggalEvent, e.Lokasi, k.NamaKomunitas
+FROM     AktivitasKomunitas AS a INNER JOIN
+                  Event AS e ON a.IdAktivitas = e.IdAktivitas INNER JOIN
+                  Komunitas AS k ON a.IdKomunitas = k.IdKomunitas";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         

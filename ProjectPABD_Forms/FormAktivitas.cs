@@ -31,17 +31,20 @@ namespace ProjectPABD_Forms
 
             string query = @"
                 SELECT
-                    a.IdAktivitas,
-                    a.JenisAktivitas,
-                    a.StatusAktivitas,
-                    e.IdEvents,
-                    e.NamaEvents,
-                    e.TanggalEvent,
-                    e.Lokasi
-                FROM
-                    AktivitasKomunitas a
-                JOIN
-                    Event e ON a.IdAktivitas = e.IdAktivitas";
+            a.IdAktivitas,
+            a.JenisAktivitas,
+            a.StatusAktivitas,
+            e.IdEvents,
+            e.NamaEvents,
+            e.TanggalEvent,
+            e.Lokasi,
+            k.NamaKomunitas
+        FROM
+            AktivitasKomunitas a
+        JOIN
+            Event e ON a.IdAktivitas = e.IdAktivitas
+        JOIN
+            Komunitas k ON a.IdKomunitas = k.IdKomunitas";
 
             DataTable dt = new DataTable();
 
@@ -51,7 +54,7 @@ namespace ProjectPABD_Forms
                 da.Fill(dt);
             }
 
-            ReportDataSource rds = new ReportDataSource("DataSet_AktivitasKomunitas", dt);
+            ReportDataSource rds = new ReportDataSource("DataSet_Baru", dt);
 
             reportViewer1.LocalReport.DataSources.Clear();
             reportViewer1.LocalReport.DataSources.Add(rds);
