@@ -200,12 +200,12 @@ namespace ProjectPABD_Forms
             switch (UserSession.RoleName)
             {
                 case "Super Admin":
-                    DashboardAdmin dashboardAdmin = new DashboardAdmin();
-                    dashboardAdmin.Show();
+                    DataKomunitas dataKomunitas = new DataKomunitas();
+                    dataKomunitas.Show();
                     break;
                 case "Admin Komunitas":
-                    DashboardAdminKomun beranda = new DashboardAdminKomun();
-                    beranda.Show();
+                    DataKomunitas komunitas = new DataKomunitas();
+                    komunitas.Show();
                     break;
                 case "Pengguna":
                     DashboardUser dashboardUser = new DashboardUser();
