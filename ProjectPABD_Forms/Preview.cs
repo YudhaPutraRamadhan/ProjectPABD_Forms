@@ -38,6 +38,36 @@ namespace ProjectPABD_Forms
             }
         }
 
+        private int? GetKategoriIdByName(string kategoriName)
+        {
+            if (string.IsNullOrWhiteSpace(kategoriName))
+            {
+                return null;
+            }
+
+            try
+            {
+                // Menggunakan DatabaseConnection.ExecuteScalar untuk mendapatkan satu nilai
+                string query = "SELECT IdKategori FROM KategoriKomunitas WHERE NamaKategori = @NamaKategori";
+                SqlParameter[] parameters = { new SqlParameter("@NamaKategori", kategoriName) };
+                object result = DatabaseConnection.ExecuteScalar(query, parameters);
+
+                if (result != null && result != DBNull.Value)
+                {
+                    return Convert.ToInt32(result);
+                }
+                else
+                {
+                    return null; // Kategori tidak ditemukan
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Terjadi kesalahan saat memuat IdKategori: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
+
         private bool ValidateRow(DataRow row)
         {
             string idKomunitas = row["IdKomunitas"].ToString().Trim();
@@ -64,11 +94,12 @@ namespace ProjectPABD_Forms
                 return false;
             }
 
-            string Kategori = row["Kategori"].ToString().Trim();
+            string kategoriName = row["Kategori"].ToString().Trim();
+            int? idKategori = GetKategoriIdByName(kategoriName);
 
-            if (!Regex.IsMatch(Kategori, @"^[a-zA-Z\s]+$"))
+            if (!idKategori.HasValue)
             {
-                MessageBox.Show("Nama Kategori hanya boleh berisi huruf", "Kesalahan Validasi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Kategori '{kategoriName}' tidak ditemukan di database. Pastikan kategori sudah terdaftar.", "Kesalahan Validasi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
@@ -127,13 +158,22 @@ namespace ProjectPABD_Forms
 
                 foreach (DataRow row in dt.Rows)
                 {
-                   if (!ValidateRow(row))
-                   {
+                    if (!ValidateRow(row))
+                    {
                         return;
-                   }
+                    }
 
-                   string query = "INSERT INTO Komunitas (IdKomunitas, NamaKomunitas, AdminKomunitas, Deskripsi, NomorTeleponKomunitas, Kategori, AlamatKomunitas, EmailKomunitas, JumlahAnggota) " +
-                                  "VALUES (@IdKomunitas, @NamaKomunitas, @AdminKomunitas, @Deskripsi, @NomorTeleponKomunitas, @Kategori, @AlamatKomunitas, @EmailKomunitas, @JumlahAnggota)";
+                    string kategoriName = row["Kategori"].ToString().Trim();
+                    int? idKategori = GetKategoriIdByName(kategoriName);
+
+                    if (!idKategori.HasValue)
+                    {
+                        MessageBox.Show($"Kategori '{kategoriName}' tidak ditemukan saat impor. Impor dibatalkan.", "Kesalahan Impor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    string query = "INSERT INTO Komunitas (IdKomunitas, NamaKomunitas, AdminKomunitas, Deskripsi, NomorTeleponKomunitas, IdKategori, AlamatKomunitas, EmailKomunitas, JumlahAnggota) " +
+                                   "VALUES (@IdKomunitas, @NamaKomunitas, @AdminKomunitas, @Deskripsi, @NomorTeleponKomunitas, @IdKategori, @AlamatKomunitas, @EmailKomunitas, @JumlahAnggota)";
                     using (SqlConnection connection = new SqlConnection(connectionString))
                     {
                         using (SqlCommand command = new SqlCommand(query, connection))
@@ -143,7 +183,7 @@ namespace ProjectPABD_Forms
                             command.Parameters.AddWithValue("@AdminKomunitas", row["AdminKomunitas"]);
                             command.Parameters.AddWithValue("@Deskripsi", row["Deskripsi"]);
                             command.Parameters.AddWithValue("@NomorTeleponKomunitas", row["NomorTeleponKomunitas"]);
-                            command.Parameters.AddWithValue("@Kategori", row["Kategori"]);
+                            command.Parameters.AddWithValue("@IdKategori", idKategori.Value); // Gunakan IdKategori yang sudah dikonversi
                             command.Parameters.AddWithValue("@AlamatKomunitas", row["AlamatKomunitas"]);
                             command.Parameters.AddWithValue("@EmailKomunitas", row["EmailKomunitas"]);
                             command.Parameters.AddWithValue("@JumlahAnggota", row["JumlahAnggota"]);
