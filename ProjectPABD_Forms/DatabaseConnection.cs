@@ -7,34 +7,81 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net;
+using System.Net.Sockets;
+using System.Windows.Forms;
 
 namespace ProjectPABD_Forms
 {
-    class DatabaseConnection
+    internal class DatabaseConnection
     {
-        private static string connectionString = "Data Source=PAVILIONGAME\\YUDHA_PUTRA_RAMA;Initial Catalog=Management_Komunitas;Integrated Security=True";
+        public static string connectionString()
+        {
+            string connectStr = "";
+            try
+            {
+                string localIP = GetLocalIPAddress();
+                connectStr = $"Data Source={localIP}\\YUDHA_PUTRA_RAMA;Initial Catalog=Management_Komunitas;" +
+                    $"Integrated Security=True";
+
+                return connectStr;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return string.Empty;
+            }
+        }
+
+        public static string GetLocalIPAddress()
+        {
+            var host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (var ip in host.AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    return ip.ToString();
+                }
+            }
+            throw new Exception("Tidak ada alamat IP yang ditemukan");
+        }
 
         public static SqlConnection GetConnection()
         {
-            return new SqlConnection(connectionString);
+            return new SqlConnection(connectionString());
         }
 
         public static DataTable ExecuteQuery(string query, params SqlParameter[] parameters)
         {
             DataTable dataTable = new DataTable();
-            using (SqlConnection connection = GetConnection())
+
+            try
             {
-                using (SqlCommand command = new SqlCommand(query, connection))
+                using (SqlConnection connection = GetConnection())
                 {
-                    if (parameters != null)
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddRange(parameters);
+                        if (parameters != null)
+                        {
+                            command.Parameters.AddRange(parameters);
+                        }
+
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                        {
+                            adapter.Fill(dataTable);
+                        }
                     }
-                    SqlDataAdapter adapter = new SqlDataAdapter(command);
-                    adapter.Fill(dataTable);
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error executing query: {ex.Message}", "Database Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
             return dataTable;
+
         }
 
         public static int ExecuteNonQuery(string query, params SqlParameter[] parameters)

@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,8 +28,6 @@ namespace ProjectPABD_Forms
 
         private void SetupReportViewer()
         {
-            string connectionString = "Data Source=PAVILIONGAME\\YUDHA_PUTRA_RAMA;Initial Catalog=Management_Komunitas;Integrated Security=True";
-
             string query = @"
                 SELECT
             a.IdAktivitas,
@@ -48,7 +47,7 @@ namespace ProjectPABD_Forms
 
             DataTable dt = new DataTable();
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = DatabaseConnection.GetConnection())
             {
                 SqlDataAdapter da = new SqlDataAdapter(query, conn);
                 da.Fill(dt);
@@ -59,7 +58,8 @@ namespace ProjectPABD_Forms
             reportViewer1.LocalReport.DataSources.Clear();
             reportViewer1.LocalReport.DataSources.Add(rds);
 
-            reportViewer1.LocalReport.ReportPath = @"C:\Pengembangan Aplikasi Basis Data\ProjectPABD_Forms\ProjectPABD_Forms\AktivitasReport.rdlc";
+            string reportPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "AktivitasReport.rdlc");
+            reportViewer1.LocalReport.ReportPath = reportPath;
             reportViewer1.RefreshReport();
         }
 

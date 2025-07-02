@@ -15,8 +15,6 @@ namespace ProjectPABD_Forms
 {
     public partial class Preview : Form
     {
-        // Connection string to the database
-        private string connectionString = "Data Source=PAVILIONGAME\\YUDHA_PUTRA_RAMA;Initial Catalog=Management_Komunitas;Integrated Security=True";
         public Preview(DataTable data)
         {
             InitializeComponent();
@@ -174,7 +172,7 @@ namespace ProjectPABD_Forms
 
                     string query = "INSERT INTO Komunitas (IdKomunitas, NamaKomunitas, AdminKomunitas, Deskripsi, NomorTeleponKomunitas, IdKategori, AlamatKomunitas, EmailKomunitas, JumlahAnggota) " +
                                    "VALUES (@IdKomunitas, @NamaKomunitas, @AdminKomunitas, @Deskripsi, @NomorTeleponKomunitas, @IdKategori, @AlamatKomunitas, @EmailKomunitas, @JumlahAnggota)";
-                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    using (SqlConnection connection = new SqlConnection(DatabaseConnection.connectionString()))
                     {
                         using (SqlCommand command = new SqlCommand(query, connection))
                         {

@@ -13,8 +13,6 @@ namespace ProjectPABD_Forms
 {
     public partial class KomunitasUser : Form
     {
-
-        private string connectionString = "Data Source=PAVILIONGAME\\YUDHA_PUTRA_RAMA;Initial Catalog=Management_Komunitas;Integrated Security=True";
         public KomunitasUser()
         {
             InitializeComponent();
@@ -27,7 +25,7 @@ namespace ProjectPABD_Forms
 
         private void LoadData()
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = new SqlConnection(DatabaseConnection.connectionString()))
             {
                 try
                 {

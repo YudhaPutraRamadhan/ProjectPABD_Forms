@@ -13,7 +13,7 @@ namespace ProjectPABD_Forms
 {
     public partial class AktivitasKomunUser : Form
     {
-        private string connectionString = "Data Source=PAVILIONGAME\\YUDHA_PUTRA_RAMA;Initial Catalog=Management_Komunitas;Integrated Security=True";
+
         public AktivitasKomunUser()
         {
             InitializeComponent();
@@ -26,7 +26,7 @@ namespace ProjectPABD_Forms
 
         private void LoadJoinedData()
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = DatabaseConnection.GetConnection())
             {
 
                 string Query = @"

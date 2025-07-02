@@ -17,9 +17,6 @@ namespace ProjectPABD_Forms
 {
     public partial class DataKomunitas : Form
     {
-        // Connection string to connect to the database
-        private readonly string connectionString = "Data Source=PAVILIONGAME\\YUDHA_PUTRA_RAMA;Initial Catalog=Management_Komunitas;Integrated Security=True";
-
         private readonly MemoryCache _cache = MemoryCache.Default;
         private readonly CacheItemPolicy _policy = new CacheItemPolicy
         {
@@ -41,7 +38,7 @@ namespace ProjectPABD_Forms
 
         private void EnsureIndexes()
         {
-            using (var conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = DatabaseConnection.GetConnection())
             {
                 conn.Open();
                 var indexScript = @"
@@ -86,7 +83,7 @@ namespace ProjectPABD_Forms
             else
             {
                 dt = new DataTable();
-                using (var conn = new SqlConnection(connectionString))
+                using (SqlConnection conn = DatabaseConnection.GetConnection())
                 {
                     conn.Open();
                     var query = @"
@@ -145,7 +142,7 @@ namespace ProjectPABD_Forms
 
         private void AnalyzeQuery(string sqlQuery)
         {
-            using (var conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = DatabaseConnection.GetConnection())
             {
                 conn.InfoMessage += (s, e) => MessageBox.Show(e.Message, "STATISTICS INFO");
                 conn.Open();
@@ -217,7 +214,7 @@ namespace ProjectPABD_Forms
 
             try
             {
-                using (var conn = new SqlConnection(connectionString))
+                using (SqlConnection conn = DatabaseConnection.GetConnection())
                 {
                     conn.Open();
                     using (SqlCommand cmd = new SqlCommand("AddKomunitas", conn))
@@ -262,7 +259,7 @@ namespace ProjectPABD_Forms
 
             try
             {
-                using (var conn = new SqlConnection(connectionString))
+                using (SqlConnection conn = DatabaseConnection.GetConnection())
                 {
                     conn.Open();
                     using (var cmd = new SqlCommand("UpdateKomunitas", conn))
@@ -299,7 +296,7 @@ namespace ProjectPABD_Forms
             try
             {
                 var idKomunitas = dgwKomun.SelectedRows[0].Cells[0].Value.ToString();
-                using (var conn = new SqlConnection(connectionString))
+                using (SqlConnection conn = DatabaseConnection.GetConnection())
                 {
                     conn.Open();
                     using (var cmd = new SqlCommand("DeleteKomunitas", conn))
