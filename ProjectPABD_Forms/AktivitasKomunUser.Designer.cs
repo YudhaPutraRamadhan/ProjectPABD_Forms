@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AktivitasKomunUser));
             this.btnKembali = new System.Windows.Forms.Button();
             this.dgvAktivitasUser = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAktivitasUser)).BeginInit();
@@ -64,8 +65,9 @@
             this.ClientSize = new System.Drawing.Size(993, 680);
             this.Controls.Add(this.btnKembali);
             this.Controls.Add(this.dgvAktivitasUser);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AktivitasKomunUser";
-            this.Text = "AktivitasKomunUser";
+            this.Text = "Aktivitas Komun User";
             this.Load += new System.EventHandler(this.AktivitasKomunUser_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAktivitasUser)).EndInit();
             this.ResumeLayout(false);

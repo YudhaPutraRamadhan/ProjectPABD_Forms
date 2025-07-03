@@ -90,7 +90,7 @@
             this.Controls.Add(this.dgvPreview);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Preview";
-            this.Text = "HobbyYK";
+            this.Text = "Import Data Excel";
             this.Load += new System.EventHandler(this.Preview_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPreview)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.managementKomunitasDataSet1BindingSource)).EndInit();

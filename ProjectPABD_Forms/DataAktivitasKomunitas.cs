@@ -76,10 +76,6 @@ namespace ProjectPABD_Forms
                 DataTable dataTable = DatabaseConnection.ExecuteQuery(query);
                 dgvAktivitas.DataSource = dataTable;
 
-                if (dgvAktivitas.Columns["IdAktivitas"] != null)
-                    dgvAktivitas.Columns["IdAktivitas"].Visible = false;
-                if (dgvAktivitas.Columns["IdEvents"] != null)
-                    dgvAktivitas.Columns["IdEvents"].Visible = false;
                 if (dgvAktivitas.Columns["IdKomunitas"] != null)
                     dgvAktivitas.Columns["IdKomunitas"].Visible = false;
             }

@@ -121,7 +121,7 @@
             this.Controls.Add(this.pnlKomunitas);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DashboardAdminKomun";
-            this.Text = "HobbyYK";
+            this.Text = "Dashboard Admin Komunitas";
             this.Load += new System.EventHandler(this.Beranda_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

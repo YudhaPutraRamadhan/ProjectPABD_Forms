@@ -145,7 +145,7 @@
             this.Controls.Add(this.btnLogOut);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DashboardAdmin";
-            this.Text = "DashboardAdmin";
+            this.Text = "Dashboard Admin";
             this.Load += new System.EventHandler(this.DashboardAdmin_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

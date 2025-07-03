@@ -113,7 +113,7 @@
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormKategoriKomun";
-            this.Text = "FormKategoriKomun";
+            this.Text = "Form Kategori Komunitas";
             this.Load += new System.EventHandler(this.FormKategoriKomun_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chartKategori)).EndInit();
             this.ResumeLayout(false);

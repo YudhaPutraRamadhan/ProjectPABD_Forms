@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KelolaUser));
             this.panel1 = new System.Windows.Forms.Panel();
             this.cmbRole = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -332,6 +333,7 @@
             this.Controls.Add(this.dgvPengguna);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "KelolaUser";
             this.Text = "Kelola User";
             this.Load += new System.EventHandler(this.KelolaUser_Load);

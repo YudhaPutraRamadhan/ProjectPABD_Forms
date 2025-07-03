@@ -61,7 +61,7 @@
             this.Controls.Add(this.reportViewer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormAktivitas";
-            this.Text = "HobbyYK";
+            this.Text = "Form Aktivitas";
             this.Load += new System.EventHandler(this.FormAktivitas_Load);
             this.ResumeLayout(false);
 

@@ -95,7 +95,7 @@
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "StartScreen";
-            this.Text = "StartScreencs";
+            this.Text = "Start Screen";
             this.ResumeLayout(false);
             this.PerformLayout();
 
