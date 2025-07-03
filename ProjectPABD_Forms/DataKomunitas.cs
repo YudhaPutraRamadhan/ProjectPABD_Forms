@@ -12,6 +12,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net.Mail;
+using System.Text.RegularExpressions;
 
 namespace ProjectPABD_Forms
 {
@@ -211,6 +213,10 @@ namespace ProjectPABD_Forms
                 MessageBox.Show("Harap pilih kategori!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            if (!ValidateEmail(textEmail.Text.Trim())) 
+            {
+                return;
+            }
 
             try
             {
@@ -254,6 +260,10 @@ namespace ProjectPABD_Forms
             if (cmbKategori.SelectedValue == DBNull.Value || cmbKategori.SelectedValue == null)
             {
                 MessageBox.Show("Harap pilih kategori!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (!ValidateEmail(textEmail.Text.Trim())) 
+            {
                 return;
             }
 
@@ -373,10 +383,36 @@ namespace ProjectPABD_Forms
         {
             string email = textEmail.Text.Trim();
 
-            if (!string.IsNullOrEmpty(email) && !email.Contains('@'))
+            if (!string.IsNullOrEmpty(email) && !ValidateEmail(email))
             {
-                MessageBox.Show("Format email salah", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 textEmail.Focus();
+            }
+        }
+
+        private bool ValidateEmail(string Email)
+        {
+            if (string.IsNullOrWhiteSpace(Email))
+            {
+                MessageBox.Show("Email tidak boleh kosong", "Kesalahan Validasi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            if (!Regex.IsMatch(Email, emailPattern))
+            {
+                MessageBox.Show("Format email tidak valid. Harap masukkan email dengan format yang benar (contoh: nama@domain.com).", "Kesalahan Validasi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            try
+            {
+                MailAddress m = new MailAddress(Email);
+                return true;
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Format email tidak valid", "Kesalahan Validasi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
         }
 

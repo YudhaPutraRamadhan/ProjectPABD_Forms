@@ -45,7 +45,6 @@ namespace ProjectPABD_Forms
 
             try
             {
-                // Menggunakan DatabaseConnection.ExecuteScalar untuk mendapatkan satu nilai
                 string query = "SELECT IdKategori FROM KategoriKomunitas WHERE NamaKategori = @NamaKategori";
                 SqlParameter[] parameters = { new SqlParameter("@NamaKategori", kategoriName) };
                 object result = DatabaseConnection.ExecuteScalar(query, parameters);
@@ -56,7 +55,7 @@ namespace ProjectPABD_Forms
                 }
                 else
                 {
-                    return null; // Kategori tidak ditemukan
+                    return null;
                 }
             }
             catch (Exception ex)
@@ -135,10 +134,16 @@ namespace ProjectPABD_Forms
                 return false;
             }
 
+            string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            if (!Regex.IsMatch(Email, emailPattern))
+            {
+                MessageBox.Show("Format email tidak valid. Harap masukkan email dengan format yang benar (contoh: nama@domain.com).", "Kesalahan Validasi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
             try
             {
                 MailAddress m = new MailAddress(Email);
-
                 return true;
             }
             catch (FormatException)
@@ -158,6 +163,7 @@ namespace ProjectPABD_Forms
                 {
                     if (!ValidateRow(row))
                     {
+                        MessageBox.Show("Impor dibatalkan karena ada data yang tidak valid.", "Impor Dibatalkan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
@@ -181,7 +187,7 @@ namespace ProjectPABD_Forms
                             command.Parameters.AddWithValue("@AdminKomunitas", row["AdminKomunitas"]);
                             command.Parameters.AddWithValue("@Deskripsi", row["Deskripsi"]);
                             command.Parameters.AddWithValue("@NomorTeleponKomunitas", row["NomorTeleponKomunitas"]);
-                            command.Parameters.AddWithValue("@IdKategori", idKategori.Value); // Gunakan IdKategori yang sudah dikonversi
+                            command.Parameters.AddWithValue("@IdKategori", idKategori.Value);
                             command.Parameters.AddWithValue("@AlamatKomunitas", row["AlamatKomunitas"]);
                             command.Parameters.AddWithValue("@EmailKomunitas", row["EmailKomunitas"]);
                             command.Parameters.AddWithValue("@JumlahAnggota", row["JumlahAnggota"]);
@@ -206,4 +212,3 @@ namespace ProjectPABD_Forms
         }
     }
 }
-
