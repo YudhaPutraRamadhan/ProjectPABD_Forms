@@ -89,20 +89,20 @@ namespace ProjectPABD_Forms
                 {
                     conn.Open();
                     var query = @"
-                        SELECT 
-                            K.IdKomunitas AS [ID], 
-                            K.NamaKomunitas, 
-                            K.AdminKomunitas, 
-                            K.Deskripsi, 
-                            K.NomorTeleponKomunitas, 
+                        SELECT
+                            K.IdKomunitas AS [ID],
+                            K.NamaKomunitas,
+                            K.AdminKomunitas,
+                            K.Deskripsi,
+                            K.NomorTeleponKomunitas,
                             TK.NamaKategori AS Kategori,
-                            K.AlamatKomunitas, 
-                            K.EmailKomunitas, 
+                            K.AlamatKomunitas,
+                            K.EmailKomunitas,
                             K.JumlahAnggota,
                             K.IdKategori
-                        FROM 
+                        FROM
                             Komunitas AS K
-                        INNER JOIN 
+                        INNER JOIN
                             KategoriKomunitas AS TK ON K.IdKategori = TK.IdKategori";
                     var da = new SqlDataAdapter(query, conn);
                     da.Fill(dt);
@@ -201,6 +201,40 @@ namespace ProjectPABD_Forms
 
         }
 
+        // Metode baru untuk memeriksa duplikasi IdKomunitas
+        private bool IsKomunitasIdExist(string idKomunitas)
+        {
+            try
+            {
+                string query = "SELECT COUNT(*) FROM Komunitas WHERE IdKomunitas = @IdKomunitas";
+                SqlParameter[] parameters = { new SqlParameter("@IdKomunitas", idKomunitas) };
+                object result = DatabaseConnection.ExecuteScalar(query, parameters);
+                return Convert.ToInt32(result) > 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Terjadi kesalahan saat memeriksa ID Komunitas: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return true; // Asumsikan ada untuk mencegah duplikasi jika terjadi error
+            }
+        }
+
+        // Metode baru untuk memeriksa duplikasi NamaKomunitas
+        private bool IsNamaKomunitasExist(string namaKomunitas)
+        {
+            try
+            {
+                string query = "SELECT COUNT(*) FROM Komunitas WHERE NamaKomunitas = @NamaKomunitas";
+                SqlParameter[] parameters = { new SqlParameter("@NamaKomunitas", namaKomunitas) };
+                object result = DatabaseConnection.ExecuteScalar(query, parameters);
+                return Convert.ToInt32(result) > 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Terjadi kesalahan saat memeriksa Nama Komunitas: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return true; // Asumsikan ada untuk mencegah duplikasi jika terjadi error
+            }
+        }
+
         private void btnSimpan_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(textID.Text) || string.IsNullOrWhiteSpace(textNama.Text))
@@ -213,8 +247,24 @@ namespace ProjectPABD_Forms
                 MessageBox.Show("Harap pilih kategori!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (!ValidateEmail(textEmail.Text.Trim())) 
+            if (!ValidateEmail(textEmail.Text.Trim()))
             {
+                return;
+            }
+
+            // Validasi duplikasi ID Komunitas
+            if (IsKomunitasIdExist(textID.Text.Trim()))
+            {
+                MessageBox.Show("ID Komunitas sudah ada. Mohon gunakan ID yang berbeda.", "Peringatan Duplikasi ID", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textID.Focus();
+                return;
+            }
+
+            // Validasi duplikasi Nama Komunitas
+            if (IsNamaKomunitasExist(textNama.Text.Trim()))
+            {
+                MessageBox.Show("Nama Komunitas sudah ada. Mohon gunakan nama yang berbeda.", "Peringatan Duplikasi Nama", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textNama.Focus();
                 return;
             }
 
@@ -262,16 +312,37 @@ namespace ProjectPABD_Forms
                 MessageBox.Show("Harap pilih kategori!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (!ValidateEmail(textEmail.Text.Trim())) 
+            if (!ValidateEmail(textEmail.Text.Trim()))
             {
                 return;
             }
+
+            // Saat mengubah, kita perlu memastikan nama komunitas yang baru tidak duplikat dengan nama komunitas lain
+            // kecuali jika nama komunitas yang baru adalah nama komunitas yang sama dengan yang sedang diubah.
+            string currentId = textID.Text.Trim();
+            string newNamaKomunitas = textNama.Text.Trim();
 
             try
             {
                 using (SqlConnection conn = DatabaseConnection.GetConnection())
                 {
                     conn.Open();
+                    // Periksa apakah nama komunitas yang baru sudah ada di database,
+                    // tetapi bukan untuk IdKomunitas yang sedang diubah.
+                    string checkQuery = "SELECT COUNT(*) FROM Komunitas WHERE NamaKomunitas = @NamaKomunitas AND IdKomunitas <> @IdKomunitas";
+                    using (SqlCommand checkCmd = new SqlCommand(checkQuery, conn))
+                    {
+                        checkCmd.Parameters.AddWithValue("@NamaKomunitas", newNamaKomunitas);
+                        checkCmd.Parameters.AddWithValue("@IdKomunitas", currentId);
+                        int count = (int)checkCmd.ExecuteScalar();
+                        if (count > 0)
+                        {
+                            MessageBox.Show("Nama Komunitas sudah digunakan oleh komunitas lain. Mohon gunakan nama yang berbeda.", "Peringatan Duplikasi Nama", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            textNama.Focus();
+                            return;
+                        }
+                    }
+
                     using (var cmd = new SqlCommand("UpdateKomunitas", conn))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;

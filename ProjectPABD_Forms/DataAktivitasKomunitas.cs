@@ -186,6 +186,40 @@ namespace ProjectPABD_Forms
 
         }
 
+        // Metode baru untuk memeriksa duplikasi IdAktivitas
+        private bool IsAktivitasIdExist(string idAktivitas)
+        {
+            try
+            {
+                string query = "SELECT COUNT(*) FROM AktivitasKomunitas WHERE IdAktivitas = @IdAktivitas";
+                SqlParameter[] parameters = { new SqlParameter("@IdAktivitas", idAktivitas) };
+                object result = DatabaseConnection.ExecuteScalar(query, parameters);
+                return Convert.ToInt32(result) > 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Terjadi kesalahan saat memeriksa ID Aktivitas: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return true; // Asumsikan ada untuk mencegah duplikasi jika terjadi error
+            }
+        }
+
+        // Metode baru untuk memeriksa duplikasi IdEvents
+        private bool IsEventIdExist(string idEvent)
+        {
+            try
+            {
+                string query = "SELECT COUNT(*) FROM Event WHERE IdEvents = @IdEvents";
+                SqlParameter[] parameters = { new SqlParameter("@IdEvents", idEvent) };
+                object result = DatabaseConnection.ExecuteScalar(query, parameters);
+                return Convert.ToInt32(result) > 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Terjadi kesalahan saat memeriksa ID Event: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return true; // Asumsikan ada untuk mencegah duplikasi jika terjadi error
+            }
+        }
+
         private void btnInsert_Click(object sender, EventArgs e)
         {
             string idEvent = txtIdEvent.Text.Trim();
@@ -211,6 +245,19 @@ namespace ProjectPABD_Forms
                 return;
             }
 
+            if (IsAktivitasIdExist(idAktivitas))
+            {
+                MessageBox.Show("ID Aktivitas sudah ada. Mohon gunakan ID yang berbeda.", "Peringatan Duplikasi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtIdAktivitas.Focus();
+                return;
+            }
+            if (IsEventIdExist(idEvent))
+            {
+                MessageBox.Show("ID Event sudah ada. Mohon gunakan ID yang berbeda.", "Peringatan Duplikasi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtIdEvent.Focus();
+                return;
+            }
+
             using (SqlConnection conn = DatabaseConnection.GetConnection())
             {
                 SqlTransaction transaction = null;
@@ -220,7 +267,6 @@ namespace ProjectPABD_Forms
                     conn.Open();
                     transaction = conn.BeginTransaction();
 
-                    // Insert ke AktivitasKomunitas
                     SqlCommand cmdAktivitas = new SqlCommand
                     {
                         Connection = conn,
@@ -236,7 +282,6 @@ namespace ProjectPABD_Forms
 
                     int rowsAffectedAktivitas = cmdAktivitas.ExecuteNonQuery();
 
-                    // Insert ke Event
                     SqlCommand cmdEvent = new SqlCommand
                     {
                         Connection = conn,
@@ -331,7 +376,7 @@ namespace ProjectPABD_Forms
                     SET NamaEvents = @NamaEvents,
                         TanggalEvent = @TanggalEvent,
                         Lokasi = @Lokasi
-                    WHERE IdEvents = @IdEvents AND IdAktivitas = @IdAktivitas", conn, transaction);
+                    WHERE IdEvents = @IdEvents AND IdAktivitas = @IdAaktivitas", conn, transaction);
 
                     cmdEvent.Parameters.AddWithValue("@IdEvents", idEvent);
                     cmdEvent.Parameters.AddWithValue("@NamaEvents", namaEvent);
