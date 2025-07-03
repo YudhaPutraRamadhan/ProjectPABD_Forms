@@ -317,8 +317,13 @@ namespace ProjectPABD_Forms
                 return;
             }
 
-            // Saat mengubah, kita perlu memastikan nama komunitas yang baru tidak duplikat dengan nama komunitas lain
-            // kecuali jika nama komunitas yang baru adalah nama komunitas yang sama dengan yang sedang diubah.
+            if (IsKomunitasIdExist(textID.Text.Trim()))
+            {
+                MessageBox.Show("ID Komunitas sudah ada. Mohon gunakan ID yang berbeda.", "Peringatan Duplikasi ID", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textID.Focus();
+                return;
+            }
+
             string currentId = textID.Text.Trim();
             string newNamaKomunitas = textNama.Text.Trim();
 
@@ -327,8 +332,6 @@ namespace ProjectPABD_Forms
                 using (SqlConnection conn = DatabaseConnection.GetConnection())
                 {
                     conn.Open();
-                    // Periksa apakah nama komunitas yang baru sudah ada di database,
-                    // tetapi bukan untuk IdKomunitas yang sedang diubah.
                     string checkQuery = "SELECT COUNT(*) FROM Komunitas WHERE NamaKomunitas = @NamaKomunitas AND IdKomunitas <> @IdKomunitas";
                     using (SqlCommand checkCmd = new SqlCommand(checkQuery, conn))
                     {

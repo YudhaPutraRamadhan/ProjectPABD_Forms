@@ -325,15 +325,25 @@ namespace ProjectPABD_Forms
             string namaEvent = txtNamaEvent.Text.Trim();
             string lokasi = txtLokasi.Text.Trim();
 
-            // Validasi komunitas
             if (cmbKomunitas.SelectedValue == DBNull.Value || cmbKomunitas.SelectedValue == null)
             {
                 lblMessage.Text = "Harap pilih komunitas!";
                 return;
             }
+            if (IsAktivitasIdExist(idAktivitas))
+            {
+                MessageBox.Show("ID Aktivitas sudah ada. Mohon gunakan ID yang berbeda.", "Peringatan Duplikasi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtIdAktivitas.Focus();
+                return;
+            }
+            if (IsEventIdExist(idEvent))
+            {
+                MessageBox.Show("ID Event sudah ada. Mohon gunakan ID yang berbeda.", "Peringatan Duplikasi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtIdEvent.Focus();
+                return;
+            }
             string idKomunitas = cmbKomunitas.SelectedValue.ToString();
 
-            // Validasi input
             if (string.IsNullOrEmpty(idAktivitas) || string.IsNullOrEmpty(jenisAktivitas) ||
                 string.IsNullOrEmpty(statusAktivitas) || string.IsNullOrEmpty(idEvent) ||
                 string.IsNullOrEmpty(namaEvent) || string.IsNullOrEmpty(lokasi))
@@ -372,7 +382,7 @@ namespace ProjectPABD_Forms
                     SET NamaEvents = @NamaEvents,
                         TanggalEvent = @TanggalEvent,
                         Lokasi = @Lokasi
-                    WHERE IdEvents = @IdEvents AND IdAktivitas = @IdAaktivitas", conn, transaction);
+                    WHERE IdEvents = @IdEvents AND IdAktivitas = @IdAktivitas", conn, transaction);
 
                     cmdEvent.Parameters.AddWithValue("@IdEvents", idEvent);
                     cmdEvent.Parameters.AddWithValue("@NamaEvents", namaEvent);
