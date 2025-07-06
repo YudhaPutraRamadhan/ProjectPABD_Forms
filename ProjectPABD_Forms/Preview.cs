@@ -65,6 +65,38 @@ namespace ProjectPABD_Forms
             }
         }
 
+        private bool IsNamaKomunitasExist(string namaKomunitas)
+        {
+            try
+            {
+                string query = "SELECT COUNT(*) FROM Komunitas WHERE NamaKomunitas = @NamaKomunitas";
+                SqlParameter[] parameters = { new SqlParameter("@NamaKomunitas", namaKomunitas) };
+                object result = DatabaseConnection.ExecuteScalar(query, parameters);
+                return Convert.ToInt32(result) > 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Terjadi kesalahan saat memeriksa Nama Komunitas: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return true; // Asumsikan ada untuk mencegah duplikasi jika terjadi error
+            }
+        }
+
+        private bool IsKomunitasIdExist(string idKomunitas)
+        {
+            try
+            {
+                string query = "SELECT COUNT(*) FROM Komunitas WHERE IdKomunitas = @IdKomunitas";
+                SqlParameter[] parameters = { new SqlParameter("@IdKomunitas", idKomunitas) };
+                object result = DatabaseConnection.ExecuteScalar(query, parameters);
+                return Convert.ToInt32(result) > 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Terjadi kesalahan saat memeriksa ID Komunitas: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return true; // Asumsikan ada untuk mencegah duplikasi jika terjadi error
+            }
+        }
+
         private bool ValidateRow(DataRow row)
         {
             string idKomunitas = row["IdKomunitas"].ToString().Trim();
@@ -72,6 +104,12 @@ namespace ProjectPABD_Forms
             if (string.IsNullOrWhiteSpace(idKomunitas) || !Regex.IsMatch(idKomunitas, @"^\d+$"))
             {
                 MessageBox.Show("Id Komunitas tidak boleh kosong dan hanya boleh berisi angka", "Kesalahan Validasi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (IsKomunitasIdExist(idKomunitas))
+            {
+                MessageBox.Show("ID Komunitas sudah ada di database. Silakan gunakan ID yang berbeda.", "Kesalahan Validasi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
@@ -112,6 +150,12 @@ namespace ProjectPABD_Forms
 
             if (!ValidateEmail(Email))
             {
+                return false;
+            }
+
+            if (IsNamaKomunitasExist(row["NamaKomunitas"].ToString().Trim()))
+            {
+                MessageBox.Show("Nama Komunitas sudah ada di database. Silakan gunakan nama yang berbeda.", "Kesalahan Validasi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
