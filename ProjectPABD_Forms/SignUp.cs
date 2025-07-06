@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace ProjectPABD_Forms
 {
-    public partial class SignUp: Form
+    public partial class SignUp : Form
     {
         public SignUp()
         {
@@ -31,6 +31,12 @@ namespace ProjectPABD_Forms
             {
                 String query = "SELECT IdKomunitas, NamaKomunitas FROM Komunitas ORDER BY NamaKomunitas";
                 DataTable dataTable = DatabaseConnection.ExecuteQuery(query);
+
+                DataRow newRow = dataTable.NewRow();
+                newRow["IdKomunitas"] = DBNull.Value;
+                newRow["NamaKomunitas"] = "-- Tidak Ada Komunitas --";
+                dataTable.Rows.InsertAt(newRow, 0);
+
                 if (dataTable.Rows.Count > 0)
                 {
                     cmbKomunitas.DataSource = dataTable;
@@ -113,13 +119,6 @@ namespace ProjectPABD_Forms
                 return false;
             }
 
-            if (cmbKomunitas.SelectedIndex < 0)
-            {
-                MessageBox.Show("Silakan pilih komunitas.", "Validasi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                cmbKomunitas.Focus();
-                return false;
-            }
-
             if (IsUsernameExist(txtUsername.Text.Trim()))
             {
                 MessageBox.Show("Username sudah terdaftar. Silakan gunakan username lain.", "Validasi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -158,9 +157,14 @@ namespace ProjectPABD_Forms
 
                 string jenisKelamin = rbLakiLaki.Checked ? "L" : "P";
 
-                int userRoleId = 3;
+                int userRoleId = 3; 
 
-                string komunitasId = cmbKomunitas.SelectedValue.ToString();
+                object komunitasId = cmbKomunitas.SelectedValue;
+                if (komunitasId == DBNull.Value)
+                {
+                    komunitasId = null;
+                }
+
                 string newUserId = GenerateNewUserId();
 
                 SqlParameter[] parameters =
@@ -171,7 +175,7 @@ namespace ProjectPABD_Forms
                     new SqlParameter("@nomorTelepon", txtNomortelp.Text.Trim()),
                     new SqlParameter("@jenisKelamin", jenisKelamin),
                     new SqlParameter("@idRole", userRoleId),
-                    new SqlParameter("@idKomunitas", komunitasId)
+                    new SqlParameter("@idKomunitas", komunitasId ?? (object)DBNull.Value)
                 };
                 int rowsAffected = DatabaseConnection.ExecuteNonQuery(query, parameters);
 
@@ -228,6 +232,4 @@ namespace ProjectPABD_Forms
             }
         }
     }
-
-
 }
