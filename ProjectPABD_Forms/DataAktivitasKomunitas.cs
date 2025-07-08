@@ -330,18 +330,7 @@ namespace ProjectPABD_Forms
                 lblMessage.Text = "Harap pilih komunitas!";
                 return;
             }
-            if (IsAktivitasIdExist(idAktivitas))
-            {
-                MessageBox.Show("ID Aktivitas sudah ada. Mohon gunakan ID yang berbeda.", "Peringatan Duplikasi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtIdAktivitas.Focus();
-                return;
-            }
-            if (IsEventIdExist(idEvent))
-            {
-                MessageBox.Show("ID Event sudah ada. Mohon gunakan ID yang berbeda.", "Peringatan Duplikasi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtIdEvent.Focus();
-                return;
-            }
+
             string idKomunitas = cmbKomunitas.SelectedValue.ToString();
 
             if (string.IsNullOrEmpty(idAktivitas) || string.IsNullOrEmpty(jenisAktivitas) ||

@@ -317,13 +317,6 @@ namespace ProjectPABD_Forms
                 return;
             }
 
-            if (IsKomunitasIdExist(textID.Text.Trim()))
-            {
-                MessageBox.Show("ID Komunitas sudah ada. Mohon gunakan ID yang berbeda.", "Peringatan Duplikasi ID", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                textID.Focus();
-                return;
-            }
-
             string currentId = textID.Text.Trim();
             string newNamaKomunitas = textNama.Text.Trim();
 
