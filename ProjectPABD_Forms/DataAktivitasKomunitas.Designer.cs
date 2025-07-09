@@ -271,6 +271,7 @@
             this.comboxJenis.Items.AddRange(new object[] {
             "Buka Booth",
             "Gathering",
+            "Kopdar",
             "Lainnya"});
             this.comboxJenis.Location = new System.Drawing.Point(170, 121);
             this.comboxJenis.Name = "comboxJenis";

@@ -21,7 +21,7 @@ namespace ProjectPABD_Forms
             try
             {
                 string localIP = GetLocalIPAddress();
-                connectStr = $"Data Source={localIP}\\YUDHA_PUTRA_RAMA;Initial Catalog=Management_Komunitas;" +
+                connectStr = $"Data Source={localIP};Initial Catalog=Management_Komunitas;" +
                     $"Integrated Security=True";
 
                 return connectStr;
