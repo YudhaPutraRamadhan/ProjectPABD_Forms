@@ -25,7 +25,6 @@ namespace ProjectPABD_Forms
             LoadKomunitas();
             LoadRoles();
             LoadData();
-            rbLakiLaki.Checked = true;
         }
 
         // ClearForm untuk reset role selection
@@ -34,7 +33,6 @@ namespace ProjectPABD_Forms
             txtUsername.Clear();
             txtPassword.Clear();
             txtNomorTelepon.Clear();
-            rbLakiLaki.Checked = true;
 
             if (cmbKomunitas.Items.Count > 0)
                 cmbKomunitas.SelectedIndex = 1; // Skip "Tidak Ada Komunitas"
@@ -574,7 +572,7 @@ namespace ProjectPABD_Forms
                 return false;
             }
 
-            if (!txtNomorTelepon.Text.StartsWith("08") || txtNomorTelepon.Text.Length < 12 || txtNomorTelepon.Text.Length > 14 || !txtNomorTelepon.Text.All(char.IsDigit))
+            if (!txtNomorTelepon.Text.StartsWith("08") || txtNomorTelepon.Text.Length <= 12 || txtNomorTelepon.Text.Length >= 14 || !txtNomorTelepon.Text.All(char.IsDigit))
             {
                 MessageBox.Show("Nomor telepon harus diawali dengan '08' dan terdiri dari 12-14 digit.", "Validasi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtNomorTelepon.Focus();

@@ -22,7 +22,6 @@ namespace ProjectPABD_Forms
         private void SignUp_Load(object sender, EventArgs e)
         {
             LoadKomunitas();
-            rbLakiLaki.Checked = true;
         }
 
         private void LoadKomunitas()

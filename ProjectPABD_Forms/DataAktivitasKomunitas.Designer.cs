@@ -111,7 +111,7 @@
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.label2);
-            this.panel2.Location = new System.Drawing.Point(12, 289);
+            this.panel2.Location = new System.Drawing.Point(12, 280);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(998, 179);
             this.panel2.TabIndex = 1;
@@ -214,7 +214,7 @@
             this.panel3.Controls.Add(this.txtIdAktivitas);
             this.panel3.Controls.Add(this.label8);
             this.panel3.Controls.Add(this.label3);
-            this.panel3.Location = new System.Drawing.Point(12, 86);
+            this.panel3.Location = new System.Drawing.Point(12, 77);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(998, 179);
             this.panel3.TabIndex = 2;
@@ -322,7 +322,7 @@
             // dgvAktivitas
             // 
             this.dgvAktivitas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAktivitas.Location = new System.Drawing.Point(12, 493);
+            this.dgvAktivitas.Location = new System.Drawing.Point(12, 484);
             this.dgvAktivitas.Name = "dgvAktivitas";
             this.dgvAktivitas.RowHeadersWidth = 51;
             this.dgvAktivitas.RowTemplate.Height = 24;
@@ -333,9 +333,10 @@
             // lblMessage
             // 
             this.lblMessage.AutoSize = true;
-            this.lblMessage.Location = new System.Drawing.Point(24, 810);
+            this.lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMessage.Location = new System.Drawing.Point(24, 786);
             this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(64, 16);
+            this.lblMessage.Size = new System.Drawing.Size(77, 20);
             this.lblMessage.TabIndex = 4;
             this.lblMessage.Text = "Message";
             // 
@@ -344,7 +345,7 @@
             this.btnInsert.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.btnInsert.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInsert.ForeColor = System.Drawing.Color.White;
-            this.btnInsert.Location = new System.Drawing.Point(27, 740);
+            this.btnInsert.Location = new System.Drawing.Point(27, 731);
             this.btnInsert.Name = "btnInsert";
             this.btnInsert.Size = new System.Drawing.Size(101, 37);
             this.btnInsert.TabIndex = 5;
@@ -357,7 +358,7 @@
             this.btnHapus.BackColor = System.Drawing.Color.Red;
             this.btnHapus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHapus.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnHapus.Location = new System.Drawing.Point(182, 740);
+            this.btnHapus.Location = new System.Drawing.Point(182, 731);
             this.btnHapus.Name = "btnHapus";
             this.btnHapus.Size = new System.Drawing.Size(101, 37);
             this.btnHapus.TabIndex = 6;
@@ -370,7 +371,7 @@
             this.btnUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdate.ForeColor = System.Drawing.Color.White;
-            this.btnUpdate.Location = new System.Drawing.Point(347, 740);
+            this.btnUpdate.Location = new System.Drawing.Point(347, 731);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(101, 37);
             this.btnUpdate.TabIndex = 7;
@@ -383,7 +384,7 @@
             this.btnRefresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRefresh.ForeColor = System.Drawing.Color.White;
-            this.btnRefresh.Location = new System.Drawing.Point(514, 740);
+            this.btnRefresh.Location = new System.Drawing.Point(514, 731);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(101, 37);
             this.btnRefresh.TabIndex = 8;
@@ -396,7 +397,7 @@
             this.btnBack.BackColor = System.Drawing.Color.Purple;
             this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBack.ForeColor = System.Drawing.Color.White;
-            this.btnBack.Location = new System.Drawing.Point(756, 740);
+            this.btnBack.Location = new System.Drawing.Point(756, 731);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(243, 37);
             this.btnBack.TabIndex = 9;
@@ -407,7 +408,7 @@
             // btnLaporan
             // 
             this.btnLaporan.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLaporan.Location = new System.Drawing.Point(817, 667);
+            this.btnLaporan.Location = new System.Drawing.Point(817, 658);
             this.btnLaporan.Name = "btnLaporan";
             this.btnLaporan.Size = new System.Drawing.Size(167, 34);
             this.btnLaporan.TabIndex = 10;
